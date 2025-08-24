@@ -17,10 +17,11 @@ import {
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 
 const Navigation = () => {
   const router = useRouter()
+  const pathname = usePathname()
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -29,8 +30,15 @@ const Navigation = () => {
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
     { name: 'Careers', path: '#' },
-    { name: 'Contact Us', path: '#' },
+    // { name: 'Contact Us', path: '#' },
   ]
+
+  const isActivePage = (path) => {
+    if (path === '/') {
+      return pathname === '/'
+    }
+    return pathname === path
+  }
 
   const handleNavigation = (path) => {
     if (path === '/') {
@@ -64,7 +72,17 @@ const Navigation = () => {
       </Typography>
       <List>
         {navItems.map((item) => (
-          <ListItem key={item.name} onClick={() => handleNavigation(item.path)}>
+          <ListItem 
+            key={item.name} 
+            onClick={() => handleNavigation(item.path)}
+            sx={{
+              bgcolor: isActivePage(item.path) ? 'primary.main' : 'transparent',
+              color: isActivePage(item.path) ? 'white' : 'inherit',
+              borderRadius: 1,
+              mx: 1,
+              mb: 0.5,
+            }}
+          >
             <ListItemText 
               primary={item.name} 
               sx={{ 
@@ -129,9 +147,10 @@ const Navigation = () => {
                   fontWeight: 600,
                   fontSize: '0.95rem',
                   px: 2,
-                  py: 1,
+                  py: 0.6 ,
                   borderRadius: 2,
-                  color: 'white',
+                  color: isActivePage(item.path) ? '#000000' : 'white',
+                  bgcolor: isActivePage(item.path) ? '#ffffff' : 'transparent',
                   '&:hover': {
                     bgcolor: 'rgba(255,255,255,0.2)',
                     transform: 'translateY(-1px)',
