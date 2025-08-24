@@ -51,7 +51,7 @@ const ServicesPage = () => {
             bottom: 0,
             backgroundImage: `url(${servicesbanner.src})`,
             backgroundSize: "cover",
-            backgroundPosition: "center -50px",
+            backgroundPosition: "center ",
             backgroundRepeat: "no-repeat",
             height: "100%",
             "&::before": {
@@ -1003,7 +1003,7 @@ const ServicesPage = () => {
       </Box>
 
       {/* Main Content 11 - Staffing Services */}
-      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 },marginBottom:"100px" }}>
+      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 }, marginBottom: "100px" }}>
         <Container maxWidth="xl">
           <Box
             sx={{

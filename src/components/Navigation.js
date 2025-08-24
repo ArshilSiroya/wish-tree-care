@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   AppBar,
@@ -14,100 +14,101 @@ import {
   ListItemText,
   useTheme,
   useMediaQuery,
-} from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'
-import { useState } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 const Navigation = () => {
-  const router = useRouter()
-  const pathname = usePathname()
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const router = useRouter();
+  const pathname = usePathname();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'Careers', path: '#' },
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+    { name: "Careers", path: "#" },
     // { name: 'Contact Us', path: '#' },
-  ]
+  ];
 
   const isActivePage = (path) => {
-    if (path === '/') {
-      return pathname === '/'
+    if (path === "/") {
+      return pathname === "/";
     }
-    return pathname === path
-  }
+    return pathname === path;
+  };
 
   const handleNavigation = (path) => {
-    if (path === '/') {
-      router.push(path)
-    } else if (path === '#') {
+    if (path === "/") {
+      router.push(path);
+    } else if (path === "#") {
       // Stay on same page for placeholder links
-      setMobileOpen(false)
+      setMobileOpen(false);
     } else {
-      router.push(path)
+      router.push(path);
     }
-    setMobileOpen(false)
-  }
+    setMobileOpen(false);
+  };
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
+    setMobileOpen(!mobileOpen);
+  };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography
         variant="h6"
         sx={{
           my: 2,
           fontWeight: 800,
-          color: 'primary.main',
-          cursor: 'pointer',
+          color: "primary.main",
+          cursor: "pointer",
         }}
-        onClick={() => handleNavigation('/')}
+        onClick={() => handleNavigation("/")}
       >
         Wish Tree Care
       </Typography>
-      <List>
+      <List sx={{ display: "flex", justifyContent: "center",flexDirection:"column",alignItems:"center" }}>
         {navItems.map((item) => (
-          <ListItem 
-            key={item.name} 
+          <ListItem
+            key={item.name}
             onClick={() => handleNavigation(item.path)}
             sx={{
-              bgcolor: isActivePage(item.path) ? 'primary.main' : 'transparent',
-              color: isActivePage(item.path) ? 'white' : 'inherit',
+              bgcolor: isActivePage(item.path) ? "primary.main" : "transparent",
+              color: isActivePage(item.path) ? "white" : "inherit",
               borderRadius: 1,
               mx: 1,
               mb: 0.5,
+              width: "50%",
             }}
           >
-            <ListItemText 
-              primary={item.name} 
-              sx={{ 
-                textAlign: 'center',
-                '& .MuiTypography-root': {
+            <ListItemText
+              primary={item.name}
+              sx={{
+                textAlign: "center",
+                "& .MuiTypography-root": {
                   fontWeight: 600,
-                  fontSize: '1.1rem',
-                }
+                  fontSize: "1.1rem",
+                },
               }}
             />
           </ListItem>
         ))}
       </List>
     </Box>
-  )
+  );
 
   return (
-    <AppBar 
-      position="static" 
-      elevation={0} 
-      sx={{ 
-        backgroundColor: 'transparent', 
-        color: 'white',
-        borderBottom: 'none',
-        position: 'relative',
+    <AppBar
+      position="static"
+      elevation={0}
+      sx={{
+        backgroundColor: "transparent",
+        color: "white",
+        borderBottom: "none",
+        position: "relative",
         zIndex: 20,
       }}
     >
@@ -120,42 +121,44 @@ const Navigation = () => {
             sx={{
               flexGrow: 0,
               fontWeight: 800,
-              cursor: 'pointer',
-              color: 'white',
-              fontSize: { xs: '1.25rem', md: '1.5rem' },
+              cursor: "pointer",
+              color: "white",
+              fontSize: { xs: "1.25rem", md: "1.5rem" },
             }}
-            onClick={() => handleNavigation('/')}
+            onClick={() => handleNavigation("/")}
           >
             Wish Tree Care
           </Typography>
 
           {/* Navigation Links - Desktop */}
-          <Box sx={{ 
-            display: { xs: 'none', md: 'flex' }, 
-            gap: 1, 
-            flexGrow: 1,
-            justifyContent: 'center',
-            mx: 2
-          }}>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              gap: 1,
+              flexGrow: 1,
+              justifyContent: "center",
+              mx: 2,
+            }}
+          >
             {navItems.map((item) => (
               <Button
                 key={item.name}
                 color="inherit"
                 onClick={() => handleNavigation(item.path)}
                 sx={{
-                  textTransform: 'none',
+                  textTransform: "none",
                   fontWeight: 600,
-                  fontSize: '0.95rem',
+                  fontSize: "0.95rem",
                   px: 2,
-                  py: 0.6 ,
+                  py: 0.6,
                   borderRadius: 2,
-                  color: isActivePage(item.path) ? '#000000' : 'white',
-                  bgcolor: isActivePage(item.path) ? '#ffffff' : 'transparent',
-                  '&:hover': {
-                    bgcolor: 'rgba(255,255,255,0.2)',
-                    transform: 'translateY(-1px)',
+                  color: isActivePage(item.path) ? "#000000" : "white",
+                  bgcolor: isActivePage(item.path) ? "#ffffff" : "transparent",
+                  "&:hover": {
+                    bgcolor: "rgba(255,255,255,0.2)",
+                    transform: "translateY(-1px)",
                   },
-                  transition: 'all 0.2s ease',
+                  transition: "all 0.2s ease",
                 }}
               >
                 {item.name}
@@ -164,10 +167,12 @@ const Navigation = () => {
           </Box>
 
           {/* Mobile Menu Button */}
-          <Box sx={{ 
-            display: { xs: 'flex', md: 'none' },
-            marginLeft: 'auto' // This pushes the menu button to the right
-          }}>
+          <Box
+            sx={{
+              display: { xs: "flex", md: "none" },
+              marginLeft: "auto", // This pushes the menu button to the right
+            }}
+          >
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -180,22 +185,22 @@ const Navigation = () => {
           </Box>
 
           {/* Contact Us Button - Desktop */}
-          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
             <Button
               variant="contained"
-              onClick={() => handleNavigation('/contact')}
+              onClick={() => handleNavigation("/contact")}
               sx={{
-                bgcolor: 'white',
-                color: '#000000',
+                bgcolor: "white",
+                color: "#000000",
                 px: 3,
                 py: 1,
                 fontWeight: 600,
                 borderRadius: 2,
-                '&:hover': {
-                  bgcolor: 'grey.100',
-                  transform: 'translateY(-1px)',
+                "&:hover": {
+                  bgcolor: "grey.100",
+                  transform: "translateY(-1px)",
                 },
-                transition: 'all 0.2s ease',
+                transition: "all 0.2s ease",
               }}
             >
               Contact Us
@@ -213,18 +218,18 @@ const Navigation = () => {
           keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: 'block', md: 'none' },
-          '& .MuiDrawer-paper': { 
-            boxSizing: 'border-box', 
+          display: { xs: "block", md: "none" },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
             width: 280,
-            bgcolor: 'white',
+            bgcolor: "white",
           },
         }}
       >
         {drawer}
       </Drawer>
     </AppBar>
-  )
-}
+  );
+};
 
-export default Navigation 
+export default Navigation;
