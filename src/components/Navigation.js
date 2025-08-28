@@ -70,7 +70,14 @@ const Navigation = () => {
       >
         Wish Tree Care
       </Typography>
-      <List sx={{ display: "flex", justifyContent: "center",flexDirection:"column",alignItems:"center" }}>
+      <List
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         {navItems.map((item) => (
           <ListItem
             key={item.name}
@@ -188,7 +195,7 @@ const Navigation = () => {
           <Box sx={{ display: { xs: "none", md: "block" } }}>
             <Button
               variant="contained"
-              onClick={() => handleNavigation("/contact")}
+              onClick={() => handleNavigation("")}
               sx={{
                 bgcolor: "white",
                 color: "#000000",
