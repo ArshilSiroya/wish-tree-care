@@ -45,7 +45,7 @@ const HomePage = () => {
         sx={{
           position: "relative",
           overflow: "hidden",
-          height: "850px",
+          height: { xs: "850px", xl: "1140px" },
         }}
       >
         {/* Background Pattern */}
@@ -112,7 +112,7 @@ const HomePage = () => {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                mt: 25,
+                mt: { xs: 25, xl: 29 },
               }}
             >
               <Typography
