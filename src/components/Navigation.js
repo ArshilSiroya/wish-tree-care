@@ -27,7 +27,7 @@ const Navigation = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", path: "/" },
+    { name: "About Us", path: "/" },
     { name: "Services", path: "/services" },
     { name: "Careers", path: "#" },
     // { name: 'Contact Us', path: '#' },
