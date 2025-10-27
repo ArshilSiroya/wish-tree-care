@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
   Box,
   Container,
@@ -13,8 +14,12 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import HeroImage1 from "../../public/images/hero/Hero1.jpg";
+import HeroImage2 from "../../public/images/hero/Hero2.jpg";
+import HeroImage3 from "../../public/images/hero/Hero3.jpg";
+import HeroImage4 from "../../public/images/hero/Hero4.jpg";
 import HeroImage from "../../public/images/hero/happy-old-woman.jpg";
-import AboutImage from "../../public/images/team/our-team.jpg";
+import AboutImage from "../../public/images/team/our-team.svg";
 import RestaurantRoundedIcon from "@mui/icons-material/RestaurantRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import AccessibilityNewRoundedIcon from "@mui/icons-material/AccessibilityNewRounded";
@@ -26,10 +31,54 @@ import DirectionsCarRoundedIcon from "@mui/icons-material/DirectionsCarRounded";
 import YardRoundedIcon from "@mui/icons-material/YardRounded";
 import CleaningServicesRoundedIcon from "@mui/icons-material/CleaningServicesRounded";
 import SupportRoundedIcon from "@mui/icons-material/SupportRounded";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 const HomePage = () => {
   const theme = useTheme();
   const router = useRouter();
+
+  // Carousel state
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const heroImages = [
+    HeroImage,
+    HeroImage1,
+    HeroImage2,
+    HeroImage3,
+    HeroImage4,
+  ];
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % heroImages.length;
+        // When looping back to 0, disable transition temporarily
+        if (nextIndex === 0) {
+          setIsTransitioning(false);
+        }
+        return nextIndex;
+      });
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
+  // Re-enable transition after reset
+  useEffect(() => {
+    if (!isTransitioning) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(true);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isTransitioning]);
+
+  // Calculate translation for sliding effect
+  const getTranslateX = () => {
+    return -currentImageIndex * 100;
+  };
 
   return (
     <Box
@@ -45,7 +94,7 @@ const HomePage = () => {
         sx={{
           position: "relative",
           overflow: "hidden",
-          height: { xs: "850px", xl: "1140px" },
+          height: { xs: "740px", xl: "1140px" },
         }}
       >
         {/* Background Pattern */}
@@ -63,7 +112,7 @@ const HomePage = () => {
           }}
         />
 
-        {/* Hero Background Image */}
+        {/* Hero Background Image Carousel */}
         <Box
           sx={{
             position: "absolute",
@@ -71,22 +120,59 @@ const HomePage = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: `url(${HeroImage.src})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            height: "100%",
-            "&::before": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background:
-                "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%)",
-              zIndex: 1,
-            },
+            overflow: "hidden",
+          }}
+        >
+          {/* Image Container with Sliding Effect */}
+          <Box
+            sx={{
+              display: "flex",
+              height: "100%",
+              transform: `translateX(${getTranslateX()}%)`,
+              transition: isTransitioning
+                ? "transform 0.8s ease-in-out"
+                : "none",
+            }}
+          >
+            {heroImages.map((image, index) => (
+              <Box
+                key={index}
+                sx={{
+                  width: "100%",
+                  minWidth: "100%",
+                  flexShrink: 0,
+                  height: "100%",
+                  backgroundImage: `url(${image.src})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  position: "relative",
+                  "&::before": {
+                    content: '""',
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background:
+                      "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%)",
+                    zIndex: 1,
+                  },
+                }}
+              />
+            ))}
+          </Box>
+        </Box>
+
+        {/* Navigation Layer */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 2,
           }}
         >
           <Navigation />
@@ -146,6 +232,40 @@ const HomePage = () => {
               </Typography>
             </Box>
           </Container>
+
+          {/* Carousel Indicators */}
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: 30,
+              left: "50%",
+              transform: "translateX(-50%)",
+              display: "flex",
+              gap: 1.5,
+              zIndex: 2,
+            }}
+          >
+            {heroImages.map((_, index) => (
+              <Box
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                sx={{
+                  width: currentImageIndex === index ? 24 : 8,
+                  height: 8,
+                  borderRadius: 4,
+                  backgroundColor:
+                    currentImageIndex === index
+                      ? "#ffffff"
+                      : "rgba(255,255,255,0.5)",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    backgroundColor: "#ffffff",
+                  },
+                }}
+              />
+            ))}
+          </Box>
         </Box>
       </Box>
 
@@ -238,6 +358,24 @@ const HomePage = () => {
                 exceptional care services that enhance the quality of life for
                 our clients and their families.
               </Typography>
+              <Button
+                variant="contained"
+                sx={{
+                  mt: 3,
+                  px: 3,
+                  py: 0.8,
+                  fontSize: "1.1rem",
+                  fontWeight: 600,
+                  borderRadius: 2,
+                  backgroundColor: "#000000",
+                  color: "#ffffff",
+                  "&:hover": {
+                    backgroundColor: "#333333",
+                  },
+                }}
+              >
+                Contact Us
+              </Button>
             </Box>
           </Box>
         </Container>
@@ -259,800 +397,390 @@ const HomePage = () => {
             Our Services
           </Typography>
 
+          {/* Combined Services Section - Side by Side */}
           <Grid
             container
             spacing={4}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            sx={{ display: "flex", justifyContent: "center" }}
           >
-            {/* Row 1 */}
-            <Grid item xs={12} md={4}>
+            {/* Support Coordination Section */}
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
               <Box
                 sx={{
-                  bgcolor: "white",
-                  borderRadius: 4,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  // boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
                   display: "flex",
-                  flexDirection: "column",
                   alignItems: "center",
-                  textAlign: "center",
+                  gap: 2,
+                  mb: 4,
                 }}
               >
                 <Box
                   sx={{
-                    width: 70,
-                    height: 90,
-                    borderRadius: "20%",
-                    bgcolor: "#e9f4fd",
-                    mt: 1,
+                    width: 60,
+                    height: 60,
+                    borderRadius: "50%",
+                    background:
+                      "linear-gradient(135deg, #e9f4fd 0%, #c8e3f8 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    mb: 3,
+                    boxShadow: "0 4px 12px rgba(38, 140, 237, 0.2)",
                   }}
                 >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-                      mt: 1,
-                      opacity: 1,
-                    }}
-                  >
-                    <AccessibilityNewRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
+                  <AssignmentIcon
+                    fontSize="large"
+                    style={{ color: "#268CED" }}
+                  />
                 </Box>
                 <Typography
-                  variant="h5"
+                  variant="h4"
                   sx={{
                     fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
+                    color: "#1a1a1a",
+                    fontSize: { xs: "1.5rem", md: "2rem" },
                   }}
                 >
-                  NDIS
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Comprehensive NDIS support services for participants including
-                  personal care and community participation.
+                  Support Coordination
                 </Typography>
               </Box>
+
+              <Grid container spacing={2} sx={{ justifyContent: "flex-start" }}>
+                {[
+                  {
+                    name: "Physiotherapy",
+                    icon: <AssignmentIcon />,
+                    description:
+                      "Professional physiotherapy services for improved mobility and rehabilitation",
+                  },
+                  {
+                    name: "Massage Therapy",
+                    icon: <AssignmentIcon />,
+                    description:
+                      "Therapeutic massage for relaxation and pain relief",
+                  },
+                  {
+                    name: "Podiatry",
+                    icon: <AssignmentIcon />,
+                    description: "Expert foot care and podiatry services",
+                  },
+                  {
+                    name: "Occupational Therapy",
+                    icon: <AssignmentIcon />,
+                    description:
+                      "Comprehensive occupational therapy assessments and support",
+                  },
+                  {
+                    name: "Nutritional Management",
+                    icon: <AssignmentIcon />,
+                    description:
+                      "Personalized nutritional guidance and meal planning",
+                  },
+                  {
+                    name: "Direct Care Services",
+                    icon: <AssignmentIcon />,
+                    description:
+                      "Compassionate direct care for daily living support",
+                  },
+                  {
+                    name: "Home Maintenance",
+                    icon: <AssignmentIcon />,
+                    description: "Home maintenance and safety modifications",
+                  },
+                  {
+                    name: "Delivered Meals",
+                    icon: <AssignmentIcon />,
+                    description: "Nutritious meals delivered to your doorstep",
+                  },
+                  {
+                    name: "Gardening",
+                    icon: <AssignmentIcon />,
+                    description:
+                      "Professional gardening and outdoor maintenance",
+                  },
+                  {
+                    name: "Equipment & Aides",
+                    icon: <AssignmentIcon />,
+                    description:
+                      "Assistance with mobility aids and home equipment",
+                  },
+                ].map((service) => (
+                  <Grid item xs={12} sm={4} key={service.name}>
+                    <Box
+                      sx={{
+                        bgcolor: "white",
+                        borderRadius: 3,
+                        p: 3,
+                        height: "160px",
+                        width: "370px",
+                        // minHeight: "180px",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+                        display: "flex",
+                        flexDirection: "column",
+                        transition: "all 0.3s ease",
+                        position: "relative",
+                        overflow: "hidden",
+                        border: "1px solid rgba(38, 140, 237, 0.1)",
+                        "&:hover": {
+                          boxShadow: "0 8px 24px rgba(38, 140, 237, 0.25)",
+                          transform: "translateY(-8px)",
+                          "&::before": {
+                            transform: "scaleX(1)",
+                          },
+                        },
+                        "&::before": {
+                          content: '""',
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          height: "3px",
+                          background:
+                            "linear-gradient(90deg, #268CED 0%, #1a6fc0 100%)",
+                          transform: "scaleX(0)",
+                          transition: "transform 0.3s ease",
+                        },
+                      }}
+                    >
+                      {/* Icon and Title in Same Line */}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 2,
+                          mb: 2,
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: 48,
+                            height: 48,
+                            borderRadius: "50%",
+                            background:
+                              "linear-gradient(135deg, #e9f4fd 0%, #c8e3f8 100%)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            boxShadow: "0 4px 12px rgba(38, 140, 237, 0.2)",
+                            flexShrink: 0,
+                          }}
+                        >
+                          {service.icon}
+                        </Box>
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontWeight: 700,
+                            color: "#1a1a1a",
+                            fontSize: { xs: "1.1rem", md: "1.25rem" },
+                          }}
+                        >
+                          {service.name}
+                        </Typography>
+                      </Box>
+                      {/* Service Description */}
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "text.secondary",
+                          lineHeight: 1.6,
+                          fontSize: "0.9rem",
+                          flex: 1,
+                          overflow: "hidden",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: "vertical",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {service.description}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            {/* Personalised Care Section */}
+            <Grid item xs={12} md={6} sx={{ marginTop: "50px" }}>
               <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 4,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  // boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
+                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 4 }}
               >
                 <Box
                   sx={{
-                    width: 70,
-                    height: 90,
-                    borderRadius: "20%",
-                    bgcolor: "#e9f4fd",
-                    mt: 1,
+                    width: 60,
+                    height: 60,
+                    borderRadius: "50%",
+                    background:
+                      "linear-gradient(135deg, #e9f4fd 0%, #c8e3f8 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    mb: 3,
+                    boxShadow: "0 4px 12px rgba(38, 140, 237, 0.2)",
                   }}
                 >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-                      mt: 1,
-                      opacity: 1,
-                    }}
-                  >
-                    <HomeRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
+                  <PersonOutlineIcon
+                    fontSize="large"
+                    style={{ color: "#268CED" }}
+                  />
                 </Box>
                 <Typography
-                  variant="h5"
+                  variant="h4"
                   sx={{
                     fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
+                    color: "#1a1a1a",
+                    fontSize: { xs: "1.5rem", md: "2rem" },
                   }}
                 >
-                  HCP
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Tailored home care packages providing comprehensive support
-                  for daily living and personal care needs.
+                  Personalised Care
                 </Typography>
               </Box>
-            </Grid>
 
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 4,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  // boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 70,
-                    height: 90,
-                    borderRadius: "20%",
-                    bgcolor: "#e9f4fd",
-                    mt: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: 3,
-                  }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-                      mt: 1,
-                      opacity: 1,
-                    }}
-                  >
-                    <SupportRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
-                </Box>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
-                  }}
-                >
-                  CHSP
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Entry-level support services to help older people live
-                  independently at home and in their community.
-                </Typography>
-              </Box>
-            </Grid>
-
-            {/* Row 2 */}
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 4,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  // boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 70,
-                    height: 90,
-                    borderRadius: "20%",
-                    bgcolor: "#e9f4fd",
-                    mt: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: 3,
-                  }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-                      mt: 1,
-                      opacity: 1,
-                    }}
-                  >
-                    <ElderlyRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
-                </Box>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
-                  }}
-                >
-                  Aged Care
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Specialized care services designed to meet the unique needs of
-                  elderly individuals and their families.
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 4,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  // boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 70,
-                    height: 90,
-                    borderRadius: "20%",
-                    bgcolor: "#e9f4fd",
-                    mt: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: 3,
-                  }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-                      mt: 1,
-                      opacity: 1,
-                    }}
-                  >
-                    <PersonRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
-                </Box>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
-                  }}
-                >
-                  Personal Care
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Compassionate personal care services including bathing,
-                  dressing, grooming, and mobility assistance.
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 4,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  //  boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 70,
-                    height: 90,
-                    borderRadius: "20%",
-                    bgcolor: "#e9f4fd",
-                    mt: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: 3,
-                  }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-                      mt: 1,
-                      opacity: 1,
-                    }}
-                  >
-                    <GroupsRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
-                </Box>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
-                  }}
-                >
-                  Social Services
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Social support and companionship services to enhance quality
-                  of life and community engagement.
-                </Typography>
-              </Box>
-            </Grid>
-
-            {/* Row 3 */}
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 4,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  // boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 70,
-                    height: 90,
-                    borderRadius: "20%",
-                    bgcolor: "#e9f4fd",
-                    mt: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: 3,
-                  }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-                      mt: 1,
-                      opacity: 1,
-                    }}
-                  >
-                    <DirectionsCarRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
-                </Box>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
-                  }}
-                >
-                  Transport
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Safe and reliable transport services for medical appointments,
-                  shopping, and community activities.
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 4,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  // boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 70,
-                    height: 90,
-                    borderRadius: "20%",
-                    bgcolor: "#e9f4fd",
-                    mt: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: 3,
-                  }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-                      mt: 1,
-                      opacity: 1,
-                    }}
-                  >
-                    <YardRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
-                </Box>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
-                  }}
-                >
-                  Gardening
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Professional gardening and outdoor maintenance services to
-                  keep your property beautiful and well-maintained.
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 3,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  //    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 70,
-                    height: 90,
-                    borderRadius: "20%",
-                    bgcolor: "#e9f4fd",
-                    mt: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: 3,
-                  }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-                      mt: 1,
-                      opacity: 1,
-                    }}
-                  >
-                    <CleaningServicesRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
-                </Box>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
-                  }}
-                >
-                  Domestic Assistance
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Comprehensive domestic support including cleaning, laundry,
-                  and household management services.
-                </Typography>
-              </Box>
-            </Grid>
-
-            {/* Row 4 */}
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 3,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  // boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 70,
-                    // height: 190,
-                    borderRadius: "20%",
-                    // opacity: 0.1,
-                    bgcolor: "#e9f4fd",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-
-                    mb: 3,
-                  }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-
-                      // bgcolor: '#268CED',
-                      mt: 1,
-                    }}
-                  >
-                    <RestaurantRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
-                </Box>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
-                  }}
-                >
-                  Meal Preparation
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Nutritious meal preparation and cooking services tailored to
-                  dietary requirements and preferences.
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 3,
-                  p: 4,
-                  height: "300px",
-                  width: "300px",
-                  // boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                  // '&:hover': {
-                  //   transform: 'translateY(-8px)',
-                  //   boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  // },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 70,
-                    height: 90,
-                    borderRadius: "20%",
-                    bgcolor: "#e9f4fd",
-                    mt: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: 3,
-                  }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: "white",
-                      mt: 1,
-                      opacity: 1,
-                    }}
-                  >
-                    <PeopleAltRoundedIcon
-                      fontSize="large"
-                      style={{ color: "#268CED", opacity: 1 }}
-                    />
-                  </Box>
-                </Box>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 1,
-                    color: "text.primary",
-                  }}
-                >
-                  Staffing Services
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Professional staffing solutions providing qualified and
-                  experienced caregivers for your specific needs.
-                </Typography>
-              </Box>
+              <Grid container spacing={2} sx={{ justifyContent: "flex-start" }}>
+                {[
+                  {
+                    name: "Personal Care",
+                    icon: <PersonRoundedIcon />,
+                    description:
+                      "Compassionate personal care services including bathing and grooming",
+                  },
+                  {
+                    name: "Cleaning",
+                    icon: <CleaningServicesRoundedIcon />,
+                    description:
+                      "Professional cleaning services to keep your home spotless",
+                  },
+                  {
+                    name: "Domestic Assistance",
+                    icon: <HomeRoundedIcon />,
+                    description:
+                      "Comprehensive domestic support and household management",
+                  },
+                  {
+                    name: "Respite Care",
+                    icon: <ElderlyRoundedIcon />,
+                    description:
+                      "Temporary care to give primary caregivers a break",
+                  },
+                  {
+                    name: "Social Support",
+                    icon: <GroupsRoundedIcon />,
+                    description: "Social engagement and companionship services",
+                  },
+                  {
+                    name: "Meal Preparation Help",
+                    icon: <RestaurantRoundedIcon />,
+                    description:
+                      "Assistance with meal planning and preparation",
+                  },
+                  {
+                    name: "Community Transport",
+                    icon: <DirectionsCarRoundedIcon />,
+                    description: "Safe and reliable transportation services",
+                  },
+                ].map((service) => (
+                  <Grid item xs={12} sm={4} key={service.name}>
+                    <Box
+                      sx={{
+                        bgcolor: "white",
+                        borderRadius: 3,
+                        p: 3,
+                        height: "160px",
+                        width: "370px",
+                        // minHeight: "180px",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+                        display: "flex",
+                        flexDirection: "column",
+                        transition: "all 0.3s ease",
+                        position: "relative",
+                        overflow: "hidden",
+                        border: "1px solid rgba(38, 140, 237, 0.1)",
+                        "&:hover": {
+                          boxShadow: "0 8px 24px rgba(38, 140, 237, 0.25)",
+                          transform: "translateY(-8px)",
+                          "&::before": {
+                            transform: "scaleX(1)",
+                          },
+                        },
+                        "&::before": {
+                          content: '""',
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          height: "3px",
+                          background:
+                            "linear-gradient(90deg, #268CED 0%, #1a6fc0 100%)",
+                          transform: "scaleX(0)",
+                          transition: "transform 0.3s ease",
+                        },
+                      }}
+                    >
+                      {/* Icon and Title in Same Line */}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 2,
+                          mb: 2,
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: 48,
+                            height: 48,
+                            borderRadius: "50%",
+                            background:
+                              "linear-gradient(135deg, #e9f4fd 0%, #c8e3f8 100%)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            boxShadow: "0 4px 12px rgba(38, 140, 237, 0.2)",
+                            flexShrink: 0,
+                          }}
+                        >
+                          {service.icon}
+                        </Box>
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontWeight: 700,
+                            color: "#1a1a1a",
+                            fontSize: { xs: "1.1rem", md: "1.25rem" },
+                          }}
+                        >
+                          {service.name}
+                        </Typography>
+                      </Box>
+                      {/* Service Description */}
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "text.secondary",
+                          lineHeight: 1.6,
+                          fontSize: "0.9rem",
+                          flex: 1,
+                          overflow: "hidden",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: "vertical",
+                          textOverflow: "ellipsis",
+                          width: "100%",
+                        }}
+                      >
+                        {service.description}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
           </Grid>
         </Container>
