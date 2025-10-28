@@ -42,11 +42,11 @@ const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const heroImages = [
+    HeroImage4,
     HeroImage,
     HeroImage1,
     HeroImage2,
     HeroImage3,
-    HeroImage4,
   ];
 
   // Auto-advance carousel
@@ -94,7 +94,7 @@ const HomePage = () => {
         sx={{
           position: "relative",
           overflow: "hidden",
-          height: { xs: "740px", xl: "1140px" },
+          height: { xs: "720px", xl: "950px" },
         }}
       >
         {/* Background Pattern */}
@@ -144,7 +144,7 @@ const HomePage = () => {
                   height: "100%",
                   backgroundImage: `url(${image.src})`,
                   backgroundSize: "cover",
-                  backgroundPosition: "center",
+                  backgroundPosition: "top center",
                   backgroundRepeat: "no-repeat",
                   position: "relative",
                   "&::before": {
@@ -452,7 +452,11 @@ const HomePage = () => {
                 </Typography>
               </Box>
 
-              <Grid container spacing={2} sx={{ justifyContent: "flex-start" }}>
+              <Grid
+                container
+                spacing={2}
+                sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
+              >
                 {[
                   {
                     name: "Physiotherapy",
@@ -643,7 +647,11 @@ const HomePage = () => {
                 </Typography>
               </Box>
 
-              <Grid container spacing={2} sx={{ justifyContent: "flex-start" }}>
+              <Grid
+                container
+                spacing={2}
+                sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
+              >
                 {[
                   {
                     name: "Personal Care",
