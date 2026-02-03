@@ -383,7 +383,7 @@ const HomePage = () => {
               >
                 To amplify that promise, <strong>Wishtree Care has partnered with Trilogy Care</strong>.
                 Together, we turn approved funding into more care hours, more control and
-                less complexity for every client. Trilogy Care's model keeps overheads low so
+                less complexity for every client. {`Trilogy Care's`} model keeps overheads low so
                 more of your budget becomes real support.
               </Typography>
 
@@ -557,7 +557,7 @@ const HomePage = () => {
                     maxWidth: { xs: "100%", md: "90%" },
                   }}
                 >
-                  Care coordination is about planning a person's care and support, and sharing information with everyone who helps to care for the person. Care coordination is something that your health care team may do after talking with you and the person you care for.
+                  {`Care coordination is about planning a person's care and support, and sharing information with everyone who helps to care for the person. Care coordination is something that your health care team may do after talking with you and the person you care for.`}
                 </Typography>
               </Box>
 
@@ -691,7 +691,6 @@ const HomePage = () => {
                             fontSize: "0.85rem",
                             pl: "64px",
                             flex: 1,
-                            mt: 0,
                           }}
                         >
                           {service.description}
