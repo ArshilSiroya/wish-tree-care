@@ -6,6 +6,7 @@ import {
   Link,
   Divider,
 } from '@mui/material'
+import Image from 'next/image'
 
 const Footer = () => {
   return (
@@ -29,9 +30,7 @@ const Footer = () => {
               {`Professional care services providing compassionate support for individuals and families.
               We're committed to enhancing the quality of life for our clients through personalized care.`}
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.8 }}>
-              Located in the heart of Clyde, Melbourne, serving our local community with dedication and compassion.
-            </Typography>
+            
           </Grid>
           
           {/* Services */}
@@ -41,20 +40,15 @@ const Footer = () => {
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               <Link href="#" color="inherit" sx={{ opacity: 0.9, textDecoration: 'none', '&:hover': { opacity: 1 } }}>
-                NDIS Support Services
+              Care Coodination for SAH packages
               </Link>
               <Link href="#" color="inherit" sx={{ opacity: 0.9, textDecoration: 'none', '&:hover': { opacity: 1 } }}>
-                Home Care Packages (HCP)
+              Direct Care Services
               </Link>
               <Link href="#" color="inherit" sx={{ opacity: 0.9, textDecoration: 'none', '&:hover': { opacity: 1 } }}>
-                Commonwealth Home Support (CHSP)
+              Support Coordination for NDIS
               </Link>
-              <Link href="#" color="inherit" sx={{ opacity: 0.9, textDecoration: 'none', '&:hover': { opacity: 1 } }}>
-                Personal Care
-              </Link>
-              <Link href="#" color="inherit" sx={{ opacity: 0.9, textDecoration: 'none', '&:hover': { opacity: 1 } }}>
-                Domestic Assistance
-              </Link>
+              
             </Box>
           </Grid>
           
@@ -81,22 +75,14 @@ const Footer = () => {
                   info@wishtreecare.com.au
                 </Link>
               </Box>
-              
-              <Box>
-                <Typography variant="body2" sx={{ opacity: 0.8, mb: 0.5 }}>
-                  <strong>Location:</strong>
-                </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                  Clyde, Melbourne, VIC
-                </Typography>
-              </Box>
+             
               
               <Box>
                 <Typography variant="body2" sx={{ opacity: 0.8, mb: 0.5 }}>
                   <strong>Service Areas:</strong>
                 </Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                  Clyde, Cranbourne, Berwick, Pakenham, and surrounding areas
+                Melbourne Metropolitian region
                 </Typography>
               </Box>
             </Box>
@@ -104,6 +90,38 @@ const Footer = () => {
         </Grid>
         
         <Divider sx={{ my: 5, borderColor: 'rgba(255,255,255,0.2)' }} />
+        
+        {/* Partners Section */}
+        <Box sx={{ textAlign: 'center', mb: 4 }}>
+          <Typography variant="h6" sx={{ fontWeight: 600, mb: 3, opacity: 0.9 }}>
+            Our Partners
+          </Typography>
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              alignItems: 'center',
+              gap: 2
+            }}
+          >
+            <Link 
+              href="https://trilogycare.com.au/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              
+            >
+              <Image
+                src="/triology-care.svg"
+                alt="Trilogy Care - Partner"
+                width={200}
+                height={60}
+                
+              />
+            </Link>
+          </Box>
+        </Box>
+        
+        <Divider sx={{ my: 3, borderColor: 'rgba(255,255,255,0.2)' }} />
         
         {/* Bottom Section */}
         <Box sx={{ textAlign: 'center' }}>

@@ -9,6 +9,7 @@ import {
   Grid,
   useTheme,
   Stack,
+  Link,
 } from "@mui/material";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
@@ -33,6 +34,19 @@ import CleaningServicesRoundedIcon from "@mui/icons-material/CleaningServicesRou
 import SupportRoundedIcon from "@mui/icons-material/SupportRounded";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import PanToolIcon from "@mui/icons-material/PanTool";
+import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+import WorkIcon from "@mui/icons-material/Work";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
+import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
+import BuildIcon from "@mui/icons-material/Build";
+import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
+import SchoolIcon from "@mui/icons-material/School";
+import GroupsIcon from "@mui/icons-material/Groups";
+import PhoneIcon from "@mui/icons-material/Phone";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 
 const HomePage = () => {
   const theme = useTheme();
@@ -43,7 +57,7 @@ const HomePage = () => {
   const [isTransitioning, setIsTransitioning] = useState(true);
   const heroImages = [
     HeroImage4,
-    HeroImage,
+    // HeroImage,
     HeroImage1,
     HeroImage2,
     HeroImage3,
@@ -214,7 +228,7 @@ const HomePage = () => {
                   mb: { xs: 3, md: 4 },
                 }}
               >
-                Compassionate Care, Anytime, Anywhere
+                Compassionate Care delivered to your doorsteps
               </Typography>
               <Typography
                 variant="h4"
@@ -338,9 +352,25 @@ const HomePage = () => {
                   fontSize: { xs: "2rem", md: "3rem" },
                 }}
               >
-                About Wish Tree Care
+                About Wishtree Care
               </Typography>
 
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "1.2rem",
+                  lineHeight: 1.5,
+                  mb: 2,
+                  fontWeight: 400,
+                  textAlign: { xs: "center", md: "left" },
+                  // color: 'text.secondary',
+                }}
+              >
+                At Wishtree Care, kindness and respect guide everything we do. We support
+                people to live safely and independently at home. We listen, adapt and deliver
+                care that makes a real difference.
+              </Typography>
+              
               <Typography
                 variant="body1"
                 sx={{
@@ -349,19 +379,84 @@ const HomePage = () => {
                   mb: 3,
                   fontWeight: 400,
                   textAlign: { xs: "center", md: "left" },
-                  // color: 'text.secondary',
                 }}
               >
-                At Wish Tree Care, we believe that every individual deserves to
-                live with dignity, comfort, and independence. Our dedicated team
-                of compassionate caregivers is committed to providing
-                exceptional care services that enhance the quality of life for
-                our clients and their families.
+                To amplify that promise, <strong>Wishtree Care has partnered with Trilogy Care</strong>.
+                Together, we turn approved funding into more care hours, more control and
+                less complexity for every client. Trilogy Care's model keeps overheads low so
+                more of your budget becomes real support.
               </Typography>
+
+              {/* Trilogy Care Logo */}
+              <Box sx={{ mb: 3, display: "flex", justifyContent: { xs: "center", md: "flex-start" } }}>
+                <Link
+                  href="https://trilogycare.com.au/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    display: "inline-block",
+                    opacity: 0.9,
+                    transition: "opacity 0.3s ease",
+                    "&:hover": {
+                      opacity: 1,
+                    },
+                  }}
+                >
+                  <Image
+                    src="/triology-care.svg"
+                    alt="Trilogy Care - Partner"
+                    width={180}
+                    height={55}
+                    style={{ objectFit: "contain" }}
+                  />
+                </Link>
+              </Box>
+
+              {/* <Box sx={{ mb: 3 }}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 600,
+                    mb: 1.5,
+                    fontSize: "1.1rem",
+                    textAlign: { xs: "center", md: "left" },
+                  }}
+                >
+                  Contact Us
+                </Typography>
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontSize: "1rem",
+                      textAlign: { xs: "center", md: "left" },
+                    }}
+                  >
+                    <strong>Trilogy Care:</strong>{" "}
+                    <Link href="https://trilogycare.com.au" target="_blank" sx={{ color: "#268CED" }}>
+                      trilogycare.com.au
+                    </Link>{" "}
+                    | 1300 459 190
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontSize: "1rem",
+                      textAlign: { xs: "center", md: "left" },
+                    }}
+                  >
+                    <strong>Wishtree Care:</strong> 0452 196 648 |{" "}
+                    <Link href="mailto:info@wishtreecare.com.au" sx={{ color: "#268CED" }}>
+                      info@wishtreecare.com.au
+                    </Link>
+                  </Typography>
+                </Box>
+              </Box> */}
+
               <Button
                 variant="contained"
                 sx={{
-                  mt: 3,
+                  mt: 2,
                   px: 3,
                   py: 0.8,
                   fontSize: "1.1rem",
@@ -374,7 +469,7 @@ const HomePage = () => {
                   },
                 }}
               >
-                Contact Us
+                Get the most out of your package now...ask us how!
               </Button>
             </Box>
           </Box>
@@ -414,106 +509,104 @@ const HomePage = () => {
                 alignItems: "flex-start",
               }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  mb: 4,
-                }}
-              >
+              <Box sx={{ mb: 4 }}>
                 <Box
                   sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    background:
-                      "linear-gradient(135deg, #e9f4fd 0%, #c8e3f8 100%)",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: "0 4px 12px rgba(38, 140, 237, 0.2)",
+                    gap: 2,
+                    // mb: 2,
                   }}
                 >
-                  <AssignmentIcon
-                    fontSize="large"
-                    style={{ color: "#268CED" }}
-                  />
+                  <Box
+                    sx={{
+                      width: 60,
+                      height: 60,
+                      borderRadius: "50%",
+                      background:
+                        "linear-gradient(135deg, #e9f4fd 0%, #c8e3f8 100%)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 4px 12px rgba(38, 140, 237, 0.2)",
+                    }}
+                  >
+                    <AssignmentIcon
+                      fontSize="large"
+                      style={{ color: "#268CED" }}
+                    />
+                  </Box>
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontWeight: 700,
+                      color: "#1a1a1a",
+                      fontSize: { xs: "1.5rem", md: "2rem" },
+                    }}  
+                  >
+                    Care & Support Coordination
+                  </Typography>
                 </Box>
                 <Typography
-                  variant="h4"
+                  variant="body1"
                   sx={{
-                    fontWeight: 700,
-                    color: "#1a1a1a",
-                    fontSize: { xs: "1.5rem", md: "2rem" },
+                    fontSize: { xs: "1rem", md: "1.1rem" },
+                    lineHeight: 1.6,
+                    color: "text.secondary",
+                    ml: { xs: 0, md: "80px" }, // Align with title text (60px icon + 16px gap + 12px)
+                    maxWidth: { xs: "100%", md: "90%" },
                   }}
                 >
-                  Support Coordination
+                  Care coordination is about planning a person's care and support, and sharing information with everyone who helps to care for the person. Care coordination is something that your health care team may do after talking with you and the person you care for.
                 </Typography>
               </Box>
 
               <Grid
                 container
                 spacing={2}
+                rowSpacing={3.5}
                 sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
               >
                 {[
                   {
-                    name: "Physiotherapy",
-                    icon: <AssignmentIcon />,
-                    description:
-                      "Professional physiotherapy services for improved mobility and rehabilitation",
+                    name: "Assessing Physical & Mental Health",
+                    icon: <HealthAndSafetyIcon />,
+                    description: "Comprehensive assessment of a person's physical and mental health needs",
                   },
                   {
-                    name: "Massage Therapy",
-                    icon: <AssignmentIcon />,
-                    description:
-                      "Therapeutic massage for relaxation and pain relief",
+                    name: "Educating & Supporting",
+                    icon: <SchoolIcon />,
+                    description: "Educating and supporting the person and their carer",
                   },
                   {
-                    name: "Podiatry",
-                    icon: <AssignmentIcon />,
-                    description: "Expert foot care and podiatry services",
+                    name: "Community Care & Support",
+                    icon: <GroupsIcon />,
+                    description: "Helping the person get community care and support services",
                   },
                   {
-                    name: "Occupational Therapy",
-                    icon: <AssignmentIcon />,
-                    description:
-                      "Comprehensive occupational therapy assessments and support",
+                    name: "Health Provider Coordination",
+                    icon: <PhoneIcon />,
+                    description: "Talking with health and community care providers",
                   },
                   {
-                    name: "Nutritional Management",
-                    icon: <AssignmentIcon />,
-                    description:
-                      "Personalized nutritional guidance and meal planning",
+                    name: "Future Service Planning",
+                    icon: <CalendarTodayIcon />,
+                    description: "Planning what services might be needed in the future",
                   },
                   {
-                    name: "Direct Care Services",
-                    icon: <AssignmentIcon />,
-                    description:
-                      "Compassionate direct care for daily living support",
+                    name: "Allied Health",
+                    icon: <MedicalServicesIcon />,
+                    description: "We help you reach out to right allied health who tailor make a plan that is in line with your health & life goals",
                   },
                   {
-                    name: "Home Maintenance",
-                    icon: <AssignmentIcon />,
-                    description: "Home maintenance and safety modifications",
+                    name: "Nursing",
+                    icon: <LocalHospitalIcon />,
+                    description: "We look after your clinical needs by providing you access to prompt and reliable nursing service",
                   },
                   {
-                    name: "Delivered Meals",
-                    icon: <AssignmentIcon />,
-                    description: "Nutritious meals delivered to your doorstep",
-                  },
-                  {
-                    name: "Gardening",
-                    icon: <AssignmentIcon />,
-                    description:
-                      "Professional gardening and outdoor maintenance",
-                  },
-                  {
-                    name: "Equipment & Aides",
-                    icon: <AssignmentIcon />,
-                    description:
-                      "Assistance with mobility aids and home equipment",
+                    name: "Social Activity Groups",
+                    icon: <GroupsRoundedIcon />,
+                    description: "Engaging social activities and group programs for community connection and wellbeing",
                   },
                 ].map((service) => (
                   <Grid item xs={12} sm={4} key={service.name}>
@@ -521,10 +614,9 @@ const HomePage = () => {
                       sx={{
                         bgcolor: "white",
                         borderRadius: 3,
-                        p: 3,
-                        height: "160px",
+                        p: 2.5,
+                        minHeight: "140px",
                         width: "370px",
-                        // minHeight: "180px",
                         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
                         display: "flex",
                         flexDirection: "column",
@@ -559,7 +651,7 @@ const HomePage = () => {
                           display: "flex",
                           alignItems: "center",
                           gap: 2,
-                          mb: 2,
+                          mb: 0.5,
                         }}
                       >
                         <Box
@@ -583,29 +675,28 @@ const HomePage = () => {
                           sx={{
                             fontWeight: 700,
                             color: "#1a1a1a",
-                            fontSize: { xs: "1.1rem", md: "1.25rem" },
+                            fontSize: { xs: "1rem", md: "1.1rem" },
                           }}
                         >
                           {service.name}
                         </Typography>
                       </Box>
                       {/* Service Description */}
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "text.secondary",
-                          lineHeight: 1.6,
-                          fontSize: "0.9rem",
-                          flex: 1,
-                          overflow: "hidden",
-                          display: "-webkit-box",
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: "vertical",
-                          textOverflow: "ellipsis",
-                        }}
-                      >
-                        {service.description}
-                      </Typography>
+                      {service.description && (
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "text.secondary",
+                            lineHeight: 1.5,
+                            fontSize: "0.85rem",
+                            pl: "64px",
+                            flex: 1,
+                            mt: 0,
+                          }}
+                        >
+                          {service.description}
+                        </Typography>
+                      )}
                     </Box>
                   </Grid>
                 ))}
@@ -650,6 +741,7 @@ const HomePage = () => {
               <Grid
                 container
                 spacing={2}
+                rowSpacing={3.5}
                 sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
               >
                 {[
@@ -699,10 +791,9 @@ const HomePage = () => {
                       sx={{
                         bgcolor: "white",
                         borderRadius: 3,
-                        p: 3,
-                        height: "160px",
+                        p: 2.5,
+                        minHeight: "140px",
                         width: "370px",
-                        // minHeight: "180px",
                         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
                         display: "flex",
                         flexDirection: "column",
@@ -737,7 +828,7 @@ const HomePage = () => {
                           display: "flex",
                           alignItems: "center",
                           gap: 2,
-                          mb: 2,
+                          // mb: 0.0,
                         }}
                       >
                         <Box
@@ -761,30 +852,28 @@ const HomePage = () => {
                           sx={{
                             fontWeight: 700,
                             color: "#1a1a1a",
-                            fontSize: { xs: "1.1rem", md: "1.25rem" },
+                            fontSize: { xs: "1rem", md: "1.1rem" },
                           }}
                         >
                           {service.name}
                         </Typography>
                       </Box>
                       {/* Service Description */}
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "text.secondary",
-                          lineHeight: 1.6,
-                          fontSize: "0.9rem",
-                          flex: 1,
-                          overflow: "hidden",
-                          display: "-webkit-box",
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: "vertical",
-                          textOverflow: "ellipsis",
-                          width: "100%",
-                        }}
-                      >
-                        {service.description}
-                      </Typography>
+                      {service.description && (
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "text.secondary",
+                            lineHeight: 1.5,
+                            fontSize: "0.85rem",
+                            pl: "64px",
+                            flex: 1,
+                            mt: 0,
+                          }}
+                        >
+                          {service.description}
+                        </Typography>
+                      )}
                     </Box>
                   </Grid>
                 ))}
