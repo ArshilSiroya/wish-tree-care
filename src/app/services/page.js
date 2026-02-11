@@ -4,7 +4,7 @@ import { Box, Container, Typography } from "@mui/material";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import Image from "next/image";
-import ndisSupport from "../../../public/images/general/NDIS.jpg";
+import ndisSupport from "../../../public/images/general/Care-and-support.jpg";
 import homeCare from "../../../public/images/general/Home-care.jpg";
 import homeSupport from "../../../public/images/general/home-support.jpg";
 import agedCare from "../../../public/images/general/aged-care.jpg";
@@ -96,7 +96,7 @@ const ServicesPage = () => {
         </Box>
       </Box>
 
-      {/* Main Content 1 - NDIS */}
+      {/* Main Content 1 - Care and Support Service */}
       <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
         <Container maxWidth="xl">
           <Box
@@ -119,7 +119,7 @@ const ServicesPage = () => {
             >
               <Image
                 src={ndisSupport}
-                alt="NDIS Support Services"
+                alt="Care and Support Service"
                 width={300}
                 height={300}
                 style={{
@@ -149,7 +149,7 @@ const ServicesPage = () => {
                   textAlign: { xs: "center", md: "left" },
                 }}
               >
-                NDIS Support Services
+                Care and Support Service
               </Typography>
               <Typography
                 variant="body1"
@@ -162,7 +162,7 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Comprehensive NDIS support services for participants including
+                Comprehensive care and support services including
                 personal care and community participation.
               </Typography>
               <Typography
@@ -175,7 +175,7 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Our NDIS support services are designed to help participants
+                Our care and support services are designed to help individuals
                 achieve their goals and live more independently. We provide
                 personalized support plans that include personal care, community
                 participation, social activities, and skill development.
