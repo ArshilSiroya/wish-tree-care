@@ -242,7 +242,7 @@ const HomePage = () => {
                   mx: "auto",
                 }}
               >
-                {`Trusted caregivers dedicated to your loved ones' comfort, safety, and well-being`}
+                {`Trusted caregivers to you and your loved ones' comfort, safety, and well-being`}
               </Typography>
             </Box>
           </Container>
@@ -405,8 +405,8 @@ const HomePage = () => {
                   <Image
                     src="/triology-care.svg"
                     alt="Trilogy Care - Partner"
-                    width={180}
-                    height={55}
+                    width={200}
+                    height={70}
                     style={{ objectFit: "contain" }}
                   />
                 </Link>
