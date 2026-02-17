@@ -217,7 +217,7 @@ const Navigation = () => {
             <Image
               src="/Frame-2147227068.png"
               alt="Wish Tree Care"
-              width={180}
+              width={190}
               height={60}
               style={{ objectFit: "contain" }}
             />
