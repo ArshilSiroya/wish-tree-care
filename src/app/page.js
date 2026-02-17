@@ -34,7 +34,6 @@ import CleaningServicesRoundedIcon from "@mui/icons-material/CleaningServicesRou
 import SupportRoundedIcon from "@mui/icons-material/SupportRounded";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import PanToolIcon from "@mui/icons-material/PanTool";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import WorkIcon from "@mui/icons-material/Work";
@@ -45,8 +44,10 @@ import BuildIcon from "@mui/icons-material/Build";
 import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 import SchoolIcon from "@mui/icons-material/School";
 import GroupsIcon from "@mui/icons-material/Groups";
-import PhoneIcon from "@mui/icons-material/Phone";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import HandymanIcon from "@mui/icons-material/Handyman";
+import DevicesIcon from "@mui/icons-material/Devices";
 
 const HomePage = () => {
   const theme = useTheme();
@@ -510,7 +511,7 @@ const HomePage = () => {
             spacing={4}
             sx={{ display: "flex", justifyContent: "center" }}
           >
-            {/* Support Coordination Section */}
+            {/* Care Coordination Section */}
             <Grid
               item
               xs={12}
@@ -556,7 +557,7 @@ const HomePage = () => {
                       fontSize: { xs: "1.5rem", md: "2rem" },
                     }}
                   >
-                    Care & Support Coordination
+                    Care Coordination
                   </Typography>
                 </Box>
                 <Typography
@@ -569,7 +570,10 @@ const HomePage = () => {
                     maxWidth: { xs: "100%", md: "90%" },
                   }}
                 >
-                  {`Care coordination is about planning a person's care and support, and sharing information with everyone who helps to care for the person. Care coordination is something that your health care team may do after talking with you and the person you care for.`}
+                  We provide care coordination support to help you navigate your
+                  support at home funding. We strive to understand your care needs
+                  in full and connect you with the community resources to help
+                  you live independently and safely in your home.
                 </Typography>
               </Box>
 
@@ -581,28 +585,22 @@ const HomePage = () => {
               >
                 {[
                   {
-                    name: "Assessing Physical & Mental Health",
+                    name: "Clinical Services",
                     icon: <HealthAndSafetyIcon />,
                     description:
-                      "Comprehensive assessment of a person's physical and mental health needs",
+                      "Helping you access clinical services that suits your health condition",
                   },
                   {
                     name: "Educating & Supporting",
                     icon: <SchoolIcon />,
                     description:
-                      "Educating and supporting the person and their carer",
+                      "Educating and supporting you and your carer",
                   },
                   {
                     name: "Community Care & Support",
                     icon: <GroupsIcon />,
                     description:
-                      "Helping the person get community care and support services",
-                  },
-                  {
-                    name: "Health Provider Coordination",
-                    icon: <PhoneIcon />,
-                    description:
-                      "Talking with health and community care providers",
+                      "Helping you to get community care and support services",
                   },
                   {
                     name: "Future Service Planning",
@@ -617,16 +615,16 @@ const HomePage = () => {
                       "We help you reach out to right allied health who tailor make a plan that is in line with your health & life goals",
                   },
                   {
-                    name: "Nursing",
-                    icon: <LocalHospitalIcon />,
-                    description:
-                      "We look after your clinical needs by providing you access to prompt and reliable nursing service",
-                  },
-                  {
                     name: "Social Activity Groups",
                     icon: <GroupsRoundedIcon />,
                     description:
                       "Engaging social activities and group programs for community connection and wellbeing",
+                  },
+                  {
+                    name: "Dedicated Care & Package Management",
+                    icon: <AccountBalanceWalletIcon />,
+                    description:
+                      "Design and ongoing maintenance of your care plan and budget",
                   },
                 ].map((service) => (
                   <Grid item xs={12} sm={4} key={service.name}>
@@ -724,36 +722,56 @@ const HomePage = () => {
 
             {/* Personalised Care Section */}
             <Grid item xs={12} md={6} sx={{ marginTop: "50px" }}>
-              <Box
-                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 4 }}
-              >
+              <Box sx={{ mb: 4 }}>
                 <Box
                   sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    background:
-                      "linear-gradient(135deg, #e9f4fd 0%, #c8e3f8 100%)",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: "0 4px 12px rgba(38, 140, 237, 0.2)",
+                    gap: 2,
                   }}
                 >
-                  <PersonOutlineIcon
-                    fontSize="large"
-                    style={{ color: "#268CED" }}
-                  />
+                  <Box
+                    sx={{
+                      width: 60,
+                      height: 60,
+                      borderRadius: "50%",
+                      background:
+                        "linear-gradient(135deg, #e9f4fd 0%, #c8e3f8 100%)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 4px 12px rgba(38, 140, 237, 0.2)",
+                    }}
+                  >
+                    <PersonOutlineIcon
+                      fontSize="large"
+                      style={{ color: "#268CED" }}
+                    />
+                  </Box>
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontWeight: 700,
+                      color: "#1a1a1a",
+                      fontSize: { xs: "1.5rem", md: "2rem" },
+                    }}
+                  >
+                    Personalised Care
+                  </Typography>
                 </Box>
                 <Typography
-                  variant="h4"
+                  variant="body1"
                   sx={{
-                    fontWeight: 700,
-                    color: "#1a1a1a",
-                    fontSize: { xs: "1.5rem", md: "2rem" },
+                    fontSize: { xs: "1rem", md: "1.1rem" },
+                    lineHeight: 1.6,
+                    color: "text.secondary",
+                    ml: { xs: 0, md: "80px" },
+                    maxWidth: { xs: "100%", md: "90%" },
                   }}
                 >
-                  Personalised Care
+                  At Wishtree Care, we have a team of experienced, skilled &
+                  compassionate care givers who assist you in achieving your
+                  life goals.
                 </Typography>
               </Box>
 
@@ -878,6 +896,187 @@ const HomePage = () => {
                         </Typography>
                       </Box>
                       {/* Service Description */}
+                      {service.description && (
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "text.secondary",
+                            lineHeight: 1.5,
+                            fontSize: "0.85rem",
+                            pl: "64px",
+                            flex: 1,
+                            mt: 0,
+                          }}
+                        >
+                          {service.description}
+                        </Typography>
+                      )}
+                    </Box>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+
+            {/* Home Maintenance & Accessibility Section */}
+            <Grid
+              item
+              xs={12}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                marginTop: { xs: 4, md: 8 },
+              }}
+            >
+              <Box sx={{ mb: 4 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2,
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: 60,
+                      height: 60,
+                      borderRadius: "50%",
+                      background:
+                        "linear-gradient(135deg, #e9f4fd 0%, #c8e3f8 100%)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 4px 12px rgba(38, 140, 237, 0.2)",
+                    }}
+                  >
+                    <HandymanIcon
+                      fontSize="large"
+                      style={{ color: "#268CED" }}
+                    />
+                  </Box>
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontWeight: 700,
+                      color: "#1a1a1a",
+                      fontSize: { xs: "1.5rem", md: "2rem" },
+                    }}
+                  >
+                    Home Maintenance & Accessibility
+                  </Typography>
+                </Box>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.1rem" },
+                    lineHeight: 1.6,
+                    color: "text.secondary",
+                    ml: { xs: 0, md: "80px" },
+                    maxWidth: { xs: "100%", md: "90%" },
+                  }}
+                >
+                  We help you ensure safe & functional mobility at home & in
+                  community by providing guidance and access to right equipment &
+                  tradesman.
+                </Typography>
+              </Box>
+
+              <Grid
+                container
+                spacing={2}
+                rowSpacing={3.5}
+                sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
+              >
+                {[
+                  {
+                    name: "Gardening",
+                    icon: <YardRoundedIcon />,
+                    description:
+                      "Outdoor and garden maintenance for a safe, accessible yard",
+                  },
+                  {
+                    name: "Equipment & Technology",
+                    icon: <DevicesIcon />,
+                    description:
+                      "Guidance and access to mobility and assistive technology",
+                  },
+                  {
+                    name: "Minor Home Modifications",
+                    icon: <HomeRepairServiceIcon />,
+                    description:
+                      "Safe home adjustments to support mobility and access",
+                  },
+                ].map((service) => (
+                  <Grid item xs={12} sm={4} key={service.name}>
+                    <Box
+                      sx={{
+                        bgcolor: "white",
+                        borderRadius: 3,
+                        p: 2.5,
+                        minHeight: "140px",
+                        width: "370px",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+                        display: "flex",
+                        flexDirection: "column",
+                        transition: "all 0.3s ease",
+                        position: "relative",
+                        overflow: "hidden",
+                        border: "1px solid rgba(38, 140, 237, 0.1)",
+                        "&:hover": {
+                          boxShadow: "0 8px 24px rgba(38, 140, 237, 0.15)",
+                          transform: "translateY(-2px)",
+                          "&::after": {
+                            transform: "scaleX(1)",
+                          },
+                        },
+                        "&::after": {
+                          content: '""',
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          height: "3px",
+                          background:
+                            "linear-gradient(90deg, #268CED 0%, #1a6fc0 100%)",
+                          transform: "scaleX(0)",
+                          transition: "transform 0.3s ease",
+                        },
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 2,
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: 48,
+                            height: 48,
+                            borderRadius: "50%",
+                            background:
+                              "linear-gradient(135deg, #e9f4fd 0%, #c8e3f8 100%)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            boxShadow: "0 4px 12px rgba(38, 140, 237, 0.2)",
+                            flexShrink: 0,
+                          }}
+                        >
+                          {service.icon}
+                        </Box>
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontWeight: 700,
+                            color: "#1a1a1a",
+                            fontSize: { xs: "1rem", md: "1.1rem" },
+                          }}
+                        >
+                          {service.name}
+                        </Typography>
+                      </Box>
                       {service.description && (
                         <Typography
                           variant="body2"
