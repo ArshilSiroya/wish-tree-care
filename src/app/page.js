@@ -366,11 +366,11 @@ const HomePage = () => {
                   // color: 'text.secondary',
                 }}
               >
-                At Wishtree Care, kindness and respect guide everything we do. We support
-                people to live safely and independently at home. We listen, adapt and deliver
-                care that makes a real difference.
+                At Wishtree Care, kindness and respect guide everything we do.
+                We support people to live safely and independently at home. We
+                listen, adapt and deliver care that makes a real difference.
               </Typography>
-              
+
               <Typography
                 variant="body1"
                 sx={{
@@ -381,14 +381,22 @@ const HomePage = () => {
                   textAlign: { xs: "center", md: "left" },
                 }}
               >
-                To amplify that promise, <strong>Wishtree Care has partnered with Trilogy Care</strong>.
-                Together, we turn approved funding into more care hours, more control and
-                less complexity for every client. {`Trilogy Care's`} model keeps overheads low so
-                more of your budget becomes real support.
+                To amplify that promise,{" "}
+                <strong>Wishtree Care has partnered with Trilogy Care</strong>.
+                Together, we turn approved funding into more care hours, more
+                control and less complexity for every client. {`Trilogy Care's`}{" "}
+                model keeps overheads low so more of your budget becomes real
+                support.
               </Typography>
 
               {/* Trilogy Care Logo */}
-              <Box sx={{ mb: 3, display: "flex", justifyContent: { xs: "center", md: "flex-start" } }}>
+              <Box
+                sx={{
+                  mb: 3,
+                  display: "flex",
+                  justifyContent: { xs: "center", md: "flex-start" },
+                }}
+              >
                 <Link
                   href="https://trilogycare.com.au/"
                   target="_blank"
@@ -455,6 +463,10 @@ const HomePage = () => {
 
               <Button
                 variant="contained"
+                onClick={() =>
+                  typeof window !== "undefined" &&
+                  window.dispatchEvent(new CustomEvent("openContactModal"))
+                }
                 sx={{
                   mt: 2,
                   px: 3,
@@ -542,7 +554,7 @@ const HomePage = () => {
                       fontWeight: 700,
                       color: "#1a1a1a",
                       fontSize: { xs: "1.5rem", md: "2rem" },
-                    }}  
+                    }}
                   >
                     Care & Support Coordination
                   </Typography>
@@ -571,42 +583,50 @@ const HomePage = () => {
                   {
                     name: "Assessing Physical & Mental Health",
                     icon: <HealthAndSafetyIcon />,
-                    description: "Comprehensive assessment of a person's physical and mental health needs",
+                    description:
+                      "Comprehensive assessment of a person's physical and mental health needs",
                   },
                   {
                     name: "Educating & Supporting",
                     icon: <SchoolIcon />,
-                    description: "Educating and supporting the person and their carer",
+                    description:
+                      "Educating and supporting the person and their carer",
                   },
                   {
                     name: "Community Care & Support",
                     icon: <GroupsIcon />,
-                    description: "Helping the person get community care and support services",
+                    description:
+                      "Helping the person get community care and support services",
                   },
                   {
                     name: "Health Provider Coordination",
                     icon: <PhoneIcon />,
-                    description: "Talking with health and community care providers",
+                    description:
+                      "Talking with health and community care providers",
                   },
                   {
                     name: "Future Service Planning",
                     icon: <CalendarTodayIcon />,
-                    description: "Planning what services might be needed in the future",
+                    description:
+                      "Planning what services might be needed in the future",
                   },
                   {
                     name: "Allied Health",
                     icon: <MedicalServicesIcon />,
-                    description: "We help you reach out to right allied health who tailor make a plan that is in line with your health & life goals",
+                    description:
+                      "We help you reach out to right allied health who tailor make a plan that is in line with your health & life goals",
                   },
                   {
                     name: "Nursing",
                     icon: <LocalHospitalIcon />,
-                    description: "We look after your clinical needs by providing you access to prompt and reliable nursing service",
+                    description:
+                      "We look after your clinical needs by providing you access to prompt and reliable nursing service",
                   },
                   {
                     name: "Social Activity Groups",
                     icon: <GroupsRoundedIcon />,
-                    description: "Engaging social activities and group programs for community connection and wellbeing",
+                    description:
+                      "Engaging social activities and group programs for community connection and wellbeing",
                   },
                 ].map((service) => (
                   <Grid item xs={12} sm={4} key={service.name}>

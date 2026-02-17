@@ -25,7 +25,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 
@@ -36,6 +36,7 @@ const Navigation = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [mobileOpen, setMobileOpen] = useState(false);
   const [careersModalOpen, setCareersModalOpen] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -43,8 +44,21 @@ const Navigation = () => {
     phone: "",
     address: "",
   });
+  const [contactFormData, setContactFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
   const [loading, setLoading] = useState(false);
+  const [contactLoading, setContactLoading] = useState(false);
   const [alert, setAlert] = useState({
+    show: false,
+    message: "",
+    type: "success",
+  });
+  const [contactAlert, setContactAlert] = useState({
     show: false,
     message: "",
     type: "success",
@@ -115,11 +129,11 @@ const Navigation = () => {
 
       setLoading(false);
 
-      // Close modal after 2 seconds
+      // Close modal after 4 seconds
       setTimeout(() => {
         setCareersModalOpen(false);
         setAlert({ show: false, message: "", type: "success" });
-      }, 2000);
+      }, 4000);
     }, 500);
   };
 
@@ -135,9 +149,62 @@ const Navigation = () => {
     setAlert({ show: false, message: "", type: "success" });
   };
 
+  const handleContactInputChange = (e) => {
+    const { name, value } = e.target;
+    setContactFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    setContactLoading(true);
+    setContactAlert({ show: false, message: "", type: "success" });
+    setTimeout(() => {
+      setContactAlert({
+        show: true,
+        message:
+          "Thank you! Your message has been sent. We'll get back to you soon.",
+        type: "success",
+      });
+      setContactFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+      setContactLoading(false);
+      setTimeout(() => {
+        setContactModalOpen(false);
+        setContactAlert({ show: false, message: "", type: "success" });
+      }, 4000);
+    }, 500);
+  };
+
+  const handleCloseContactModal = () => {
+    setContactModalOpen(false);
+    setContactFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+    setContactAlert({ show: false, message: "", type: "success" });
+  };
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  // Listen for open-contact-modal events (e.g. from "Get the most out of your package" button)
+  useEffect(() => {
+    const openContact = () => setContactModalOpen(true);
+    window.addEventListener("openContactModal", openContact);
+    return () => window.removeEventListener("openContactModal", openContact);
+  }, []);
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -191,6 +258,31 @@ const Navigation = () => {
             />
           </ListItem>
         ))}
+        <ListItem
+          onClick={() => {
+            setContactModalOpen(true);
+            setMobileOpen(false);
+          }}
+          sx={{
+            bgcolor: "primary.main",
+            color: "white",
+            borderRadius: 1,
+            mx: 1,
+            mb: 0.5,
+            width: "50%",
+          }}
+        >
+          <ListItemText
+            primary="Contact Us"
+            sx={{
+              textAlign: "center",
+              "& .MuiTypography-root": {
+                fontWeight: 600,
+                fontSize: "1.1rem",
+              },
+            }}
+          />
+        </ListItem>
       </List>
     </Box>
   );
@@ -286,7 +378,9 @@ const Navigation = () => {
           <Box sx={{ display: { xs: "none", md: "block" } }}>
             <Button
               variant="contained"
-              onClick={() => handleNavigation("")}
+              onClick={() => {
+                setContactModalOpen(true);
+              }}
               sx={{
                 bgcolor: "white",
                 color: "#000000",
@@ -453,6 +547,140 @@ const Navigation = () => {
               }}
             >
               {loading ? (
+                <CircularProgress size={24} color="inherit" />
+              ) : (
+                "Submit"
+              )}
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
+
+      {/* Contact Us Modal */}
+      <Dialog
+        open={contactModalOpen}
+        onClose={handleCloseContactModal}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: 3,
+          },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            pb: 0,
+          }}
+        >
+          <Typography variant="h5" sx={{ fontWeight: 700 }}>
+            Contact Us
+          </Typography>
+          <IconButton
+            onClick={handleCloseContactModal}
+            sx={{
+              color: "text.secondary",
+              "&:hover": { backgroundColor: "rgba(0,0,0,0.05)" },
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <form onSubmit={handleContactSubmit}>
+          <DialogContent sx={{ pt: 0, pb: 2, px: 3 }}>
+            <Typography
+              variant="body1"
+              sx={{
+                mb: 4,
+                mt: 0,
+                pt: 0,
+                color: "text.secondary",
+                fontSize: "1rem",
+                lineHeight: 1.6,
+              }}
+            >
+              Have a question or want to get in touch? Fill out the form below
+              and we&apos;ll get back to you as soon as we can.
+            </Typography>
+            {contactAlert.show && (
+              <Alert severity={contactAlert.type} sx={{ mb: 3 }}>
+                {contactAlert.message}
+              </Alert>
+            )}
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
+              <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
+                <TextField
+                  required
+                  name="firstName"
+                  label="First Name"
+                  value={contactFormData.firstName}
+                  onChange={handleContactInputChange}
+                  sx={{ flex: 1 }}
+                  variant="outlined"
+                />
+                <TextField
+                  required
+                  name="lastName"
+                  label="Last Name"
+                  value={contactFormData.lastName}
+                  onChange={handleContactInputChange}
+                  sx={{ flex: 1 }}
+                  variant="outlined"
+                />
+              </Box>
+              <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
+                <TextField
+                  required
+                  name="email"
+                  label="Email"
+                  type="email"
+                  value={contactFormData.email}
+                  onChange={handleContactInputChange}
+                  sx={{ flex: 1 }}
+                  variant="outlined"
+                />
+                <TextField
+                  required
+                  name="phone"
+                  label="Phone Number"
+                  type="tel"
+                  value={contactFormData.phone}
+                  onChange={handleContactInputChange}
+                  sx={{ flex: 1 }}
+                  variant="outlined"
+                />
+              </Box>
+              <TextField
+                required
+                name="message"
+                label="Message"
+                value={contactFormData.message}
+                onChange={handleContactInputChange}
+                fullWidth
+                multiline
+                rows={4}
+                variant="outlined"
+              />
+            </Box>
+          </DialogContent>
+          <DialogActions sx={{ px: 3, pb: 3 }}>
+            <Button onClick={handleCloseContactModal} color="inherit">
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={contactLoading}
+              sx={{
+                bgcolor: "#268CED",
+                "&:hover": { bgcolor: "#1a6fc0" },
+                px: 3,
+              }}
+            >
+              {contactLoading ? (
                 <CircularProgress size={24} color="inherit" />
               ) : (
                 "Submit"
