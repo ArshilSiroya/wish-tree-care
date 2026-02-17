@@ -44,7 +44,11 @@ const Navigation = () => {
     address: "",
   });
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState({ show: false, message: "", type: "success" });
+  const [alert, setAlert] = useState({
+    show: false,
+    message: "",
+    type: "success",
+  });
 
   const navItems = [
     { name: "About Us", path: "/" },
@@ -95,7 +99,8 @@ const Navigation = () => {
       // Show success message
       setAlert({
         show: true,
-        message: "Thank you! Your inquiry has been submitted. We'll contact you soon.",
+        message:
+          "Thank you! Your inquiry has been submitted. We'll contact you soon.",
         type: "success",
       });
 
@@ -157,7 +162,7 @@ const Navigation = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          flexDirection: "column",  
+          flexDirection: "column",
           alignItems: "center",
         }}
       >
@@ -369,7 +374,8 @@ const Navigation = () => {
                 lineHeight: 1.6,
               }}
             >
-              If you would like to join our team as a care giver and help residents achieve their life goals, please fill this form
+              If you would like to join our team as a care giver and help
+              residents achieve their life goals, please fill this form
             </Typography>
             {alert.show && (
               <Alert severity={alert.type} sx={{ mb: 3 }}>
