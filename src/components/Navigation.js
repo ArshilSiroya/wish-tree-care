@@ -215,7 +215,7 @@ const Navigation = () => {
             onClick={() => handleNavigation("/")}
           >
             <Image
-              src="/wishtree-Logo.png"
+              src="/Frame-2147227068.png"
               alt="Wish Tree Care"
               width={180}
               height={60}
