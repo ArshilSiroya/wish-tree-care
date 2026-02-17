@@ -4,7 +4,7 @@ import { Box, Container, Typography } from "@mui/material";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import Image from "next/image";
-import ndisSupport from "../../../public/images/general/Care-and-support.jpg";
+import ndisSupport from "../../../public/images/general/Care-and-support-2.jpg";
 import homeCare from "../../../public/images/general/Home-care.jpg";
 import homeSupport from "../../../public/images/general/home-support.jpg";
 import agedCare from "../../../public/images/general/aged-care.jpg";
@@ -162,8 +162,11 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Comprehensive care and support services including
-                personal care and community participation.
+                Our care and support services are designed to help individuals
+                achieve their goals and live more independently. We provide
+                personalized support plans that include personal care, community
+                participation, social activities, allied health and skill
+                development.  
               </Typography>
               <Typography
                 variant="body2"
@@ -175,10 +178,8 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Our care and support services are designed to help individuals
-                achieve their goals and live more independently. We provide
-                personalized support plans that include personal care, community
-                participation, social activities, and skill development.
+                Comprehensive care and support services including personal care
+                and community participation.
               </Typography>
             </Box>
           </Box>
