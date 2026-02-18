@@ -727,7 +727,7 @@ const ServicesPage = () => {
         </Container>
       </Box>
 
-      {/* Main Content 7 - HCP */}
+      {/* Main Content 7 - Respite Care */}
       <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
         <Container maxWidth="xl">
           <Box
@@ -751,12 +751,12 @@ const ServicesPage = () => {
             >
               <Image
                 src={homeCare}
-                alt="Home Care Packages"
+                alt="Respite Care"
                 width={500}
                 height={400}
                 style={{
                   width: "100%",
-                  maxWidth: "400px", // Changed from 500px to 400px
+                  maxWidth: "400px",
                   height: "auto",
                   borderRadius: "12px",
                 }}
@@ -783,7 +783,7 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "100%" },
                 }}
               >
-                HCP (Home Care Packages)
+                Respite Care
               </Typography>
               <Typography
                 variant="body1"
@@ -796,8 +796,8 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Tailored home care packages providing comprehensive support for
-                daily living and personal care needs.
+                Temporary care to give primary caregivers a break while ensuring
+                your loved one continues to receive quality support.
               </Typography>
               <Typography
                 variant="body2"
@@ -809,10 +809,11 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Our Home Care Packages are designed to provide comprehensive
-                support for older Australians who want to remain living
-                independently in their own homes. We work closely with you to
-                develop a personalized care plan.
+                Our respite care services provide short-term relief for family
+                carers, so you can rest, attend to personal matters, or simply
+                recharge. We match you with experienced carers who understand
+                your loved one&apos;s needs and maintain their routine and
+                wellbeing.
               </Typography>
             </Box>
           </Box>
