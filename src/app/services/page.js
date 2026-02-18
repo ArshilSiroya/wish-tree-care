@@ -16,6 +16,7 @@ import domesticAssistance from "../../../public/images/general/domestic-assistan
 import mealPreparation from "../../../public/images/general/Meal-preparation.jpg";
 import staffingServices from "../../../public/images/general/staffservice.jpg";
 import servicesbanner from "../../../public/images/hero/services.jpg";
+
 const ServicesPage = () => {
   return (
     <Box
@@ -149,7 +150,7 @@ const ServicesPage = () => {
                   textAlign: { xs: "center", md: "left" },
                 }}
               >
-                Care and Support Service
+                Care Coordination
               </Typography>
               <Typography
                 variant="body1"
@@ -166,7 +167,7 @@ const ServicesPage = () => {
                 achieve their goals and live more independently. We provide
                 personalized support plans that include personal care, community
                 participation, social activities, allied health and skill
-                development.  
+                development.
               </Typography>
               <Typography
                 variant="body2"
