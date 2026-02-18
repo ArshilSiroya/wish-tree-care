@@ -13,6 +13,8 @@ import socialServices from "../../../public/images/general/social-service.jpg";
 import transport from "../../../public/images/general/transport-service.jpg";
 import gardening from "../../../public/images/general/Gardening.jpg";
 import domesticAssistance from "../../../public/images/general/domestic-assistance.jpg";
+import domesticAssistance2 from "../../../public/images/general/domestic-assistance-2.jpg";
+import cleaning from "../../../public/images/general/cleaning.jpg";
 import mealPreparation from "../../../public/images/general/Meal-preparation.jpg";
 import staffingServices from "../../../public/images/general/staffservice.jpg";
 import servicesbanner from "../../../public/images/hero/services.jpg";
@@ -186,7 +188,546 @@ const ServicesPage = () => {
           </Box>
         </Container>
       </Box>
-      {/* Main Content 2 - HCP */}
+
+      {/* Main Content 2 - Meal Preparation & Nutrition */}
+      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
+        <Container maxWidth="xl">
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: { xs: 3, sm: 4, md: 0 },
+            }}
+          >
+            {/* Image - Always on top for mobile/tablet */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: { xs: 3, md: 0 },
+                order: { xs: 1, md: 2 },
+              }}
+            >
+              <Image
+                src={mealPreparation}
+                alt="Meal Preparation & Nutrition"
+                width={300}
+                height={300}
+                style={{
+                  width: "100%",
+                  maxWidth: "400px",
+                  height: "auto",
+                  borderRadius: "12px",
+                }}
+              />
+            </Box>
+
+            {/* Text Content - Always below image for mobile/tablet */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                pl: { xs: 0, md: 19 },
+                textAlign: { xs: "center", md: "left" },
+                order: { xs: 2, md: 1 },
+              }}
+            >
+              <Typography
+                variant="h2"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
+                  color: "text.primary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Meal Preparation & Nutrition
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Nutritious meal preparation and cooking services tailored to
+                dietary requirements and preferences.
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Our meal preparation and nutrition services ensure you receive
+                healthy, delicious meals that meet your dietary requirements and
+                preferences. We work with nutritionists and dietitians to create
+                meal plans that support your health goals.
+              </Typography>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Main Content 3 - Gardening & Outdoor Maintenance */}
+      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
+        <Container maxWidth="xl">
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: { xs: 3, sm: 4, md: 0 },
+            }}
+          >
+            {/* Left Side - Image */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: { xs: 3, md: 0 },
+              }}
+            >
+              <Image
+                src={gardening}
+                alt="Gardening & Outdoor Maintenance"
+                width={300}
+                height={300}
+                style={{
+                  width: "100%",
+                  maxWidth: "400px",
+                  height: "auto",
+                  borderRadius: "12px",
+                }}
+              />
+            </Box>
+
+            {/* Right Side - Text Content */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                textAlign: { xs: "center", md: "left" },
+              }}
+            >
+              <Typography
+                variant="h2"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
+                  color: "text.primary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Gardening & Outdoor Maintenance
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Professional gardening and outdoor maintenance services to keep
+                your property beautiful and well-maintained.
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Our gardening and outdoor maintenance services help keep your
+                property looking beautiful and well-maintained throughout the
+                year. Our experienced gardeners understand the local climate and
+                can provide seasonal care.
+              </Typography>
+            </Box>
+            
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Main Content 4 - Cleaning (text left, image right) */}
+      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
+        <Container maxWidth="xl">
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: { xs: 3, sm: 4, md: 0 },
+            }}
+          >
+            {/* Left Side - Text Content */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                pl: { xs: 0, md: 19 },
+                textAlign: { xs: "center", md: "left" },
+                order: { xs: 2, md: 1 },
+              }}
+            >
+              <Typography
+                variant="h2"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
+                  color: "text.primary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Cleaning
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Professional cleaning services to keep your home spotless and
+                comfortable.
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Our cleaning services help you maintain a clean, organized, and
+                healthy home environment. We offer regular housekeeping and
+                deep cleaning tailored to your needs.
+              </Typography>
+            </Box>
+
+            {/* Right Side - Image */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: { xs: 3, md: 0 },
+                order: { xs: 1, md: 2 },
+              }}
+            >
+              <Image
+                src={cleaning}
+                alt="Cleaning"
+                width={300}
+                height={300}
+                style={{
+                  width: "100%",
+                  maxWidth: "400px",
+                  height: "auto",
+                  borderRadius: "12px",
+                }}
+              />
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Main Content 5 - Personal Care Services */}
+      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
+        <Container maxWidth="xl">
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: { xs: 3, sm: 4, md: 0 },
+            }}
+          >
+            {/* Left Side - Image */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: { xs: 3, md: 0 },
+              }}
+            >
+              <Image
+                src={agedCare}
+                alt="Personal Care Services"
+                width={300}
+                height={300}
+                style={{
+                  width: "100%",
+                  maxWidth: "400px",
+                  height: "auto",
+                  borderRadius: "12px",
+                }}
+              />
+            </Box>
+
+            {/* Right Side - Text Content */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                textAlign: { xs: "center", md: "left" },
+              }}
+            >
+              <Typography
+                variant="h2"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
+                  color: "text.primary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                }}
+              >
+                Personal Care Services
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Compassionate personal care services including bathing,
+                dressing, grooming, and mobility assistance.
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Our personal care services focus on helping you maintain your
+                personal hygiene and appearance with dignity and respect. Our
+                caregivers are trained to provide sensitive, professional care
+                that promotes your independence.
+              </Typography>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Main Content 6 - Transport Services (text left, image right) */}
+      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
+        <Container maxWidth="xl">
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: { xs: 3, sm: 4, md: 0 },
+            }}
+          >
+            {/* Left Side - Text Content */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                pl: { xs: 0, md: 19 },
+                textAlign: { xs: "center", md: "left" },
+                order: { xs: 2, md: 1 },
+              }}
+            >
+              <Typography
+                variant="h2"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
+                  color: "text.primary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Transport Services
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Safe and reliable transport services for medical appointments,
+                shopping, and community activities.
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                {`Our transport services provide safe, reliable, and comfortable transportation for all your needs. Whether you're heading to medical appointments, shopping, social activities, or community events, our drivers are trained to provide assistance.`}
+              </Typography>
+            </Box>
+
+            {/* Right Side - Image */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: { xs: 3, md: 0 },
+                order: { xs: 1, md: 2 },
+              }}
+            >
+              <Image
+                src={transport}
+                alt="Transport Services"
+                width={300}
+                height={300}
+                style={{
+                  width: "100%",
+                  maxWidth: "400px",
+                  height: "400px",
+                  borderRadius: "12px",
+                }}
+              />
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Domestic Assistance */}
+      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
+        <Container maxWidth="xl">
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: { xs: 3, sm: 4, md: 0 },
+            }}
+          >
+            {/* Left Side - Image */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: { xs: 3, md: 0 },
+              }}
+            >
+              <Image
+                src={domesticAssistance2}
+                alt="Domestic Assistance"
+                width={300}
+                height={300}
+                style={{
+                  width: "100%",
+                  maxWidth: "400px",
+                  height: "auto",
+                  borderRadius: "12px",
+                }}
+              />
+            </Box>
+
+            {/* Right Side - Text Content */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "50%" },
+                textAlign: { xs: "center", md: "left" },
+              }}
+            >
+              <Typography
+                variant="h2"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
+                  color: "text.primary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                }}
+              >
+                Domestic Assistance
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  mb: { xs: 2, md: 3 },
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Comprehensive domestic support including cleaning, laundry, and
+                household management services.
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                  lineHeight: 1.6,
+                  color: "text.secondary",
+                  textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
+                }}
+              >
+                Our domestic assistance services help you maintain a clean,
+                organized, and comfortable home environment. We understand that
+                keeping up with household tasks can become challenging, and our
+                professional team is here to help.
+              </Typography>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Main Content 7 - HCP */}
       <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
         <Container maxWidth="xl">
           <Box
@@ -461,7 +1002,7 @@ const ServicesPage = () => {
         </Container>
       </Box>
 
-      {/* Main Content 5 - Personal Care */}
+      {/* Main Content 6 - Social Services */}
       <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
         <Container maxWidth="xl">
           <Box
@@ -483,13 +1024,13 @@ const ServicesPage = () => {
               }}
             >
               <Image
-                src={personalCare}
-                alt="Personal Care Services"
+                src={socialServices}
+                alt="Social Services & Companionship"
                 width={300}
                 height={300}
                 style={{
                   width: "100%",
-                  maxWidth: "400px", // Changed from 500px to 400px  for mobile view
+                  maxWidth: "400px",
                   height: "auto",
                   borderRadius: "12px",
                 }}
@@ -500,100 +1041,7 @@ const ServicesPage = () => {
             <Box
               sx={{
                 width: { xs: "100%", md: "50%" },
-                // pl: { xs: 0, md: 4 },
                 textAlign: { xs: "center", md: "left" },
-                width: { xs: "100%", md: "50%" },
-              }}
-            >
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
-                  color: "text.primary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                }}
-              >
-                Personal Care Services
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Compassionate personal care services including bathing,
-                dressing, grooming, and mobility assistance.
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Our personal care services focus on helping you maintain your
-                personal hygiene and appearance with dignity and respect. Our
-                caregivers are trained to provide sensitive, professional care
-                that promotes your independence.
-              </Typography>
-            </Box>
-          </Box>
-        </Container>
-      </Box>
-
-      {/* Main Content 6 - Social Services */}
-      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
-        <Container maxWidth="xl">
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignItems: "center",
-              gap: { xs: 3, sm: 4, md: 0 },
-            }}
-          >
-            {/* Image - Always on top for mobile/tablet */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                mb: { xs: 3, md: 0 },
-                order: { xs: 1, md: 2 },
-              }}
-            >
-              <Image
-                src={socialServices}
-                alt="Social Services & Companionship"
-                width={300}
-                height={300}
-                style={{
-                  width: "100%",
-                  maxWidth: "400px", // Changed from 500px to 400px  for mobile view
-                  height: "auto",
-                  borderRadius: "12px",
-                }}
-              />
-            </Box>
-
-            {/* Text Content - Always below image for mobile/tablet */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                pl: { xs: 0, md: 19 },
-                textAlign: { xs: "center", md: "left" },
-                order: { xs: 2, md: 1 },
               }}
             >
               <Typography
@@ -643,7 +1091,7 @@ const ServicesPage = () => {
         </Container>
       </Box>
 
-      {/* Main Content 7 - Transport */}
+      {/* Main Content 9 - Domestic Assistance (text left, image right) */}
       <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
         <Container maxWidth="xl">
           <Box
@@ -654,119 +1102,7 @@ const ServicesPage = () => {
               gap: { xs: 3, sm: 4, md: 0 },
             }}
           >
-            {/* Left Side - Image */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                mb: { xs: 3, md: 0 },
-              }}
-            >
-              <Image
-                src={transport}
-                alt="Transport Services"
-                width={300}
-                height={300}
-                style={{
-                  width: "100%",
-                  maxWidth: "400px", // Changed from 500px to 400px  for mobile view
-                  height: "400px",
-                  borderRadius: "12px",
-                }}
-              />
-            </Box>
-
-            {/* Right Side - Text Content */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                // pl: { xs: 0, md: 4 },
-                textAlign: { xs: "center", md: "left" },
-                width: { xs: "100%", md: "50%" },
-              }}
-            >
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
-                  color: "text.primary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                }}
-              >
-                Transport Services
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Safe and reliable transport services for medical appointments,
-                shopping, and community activities.
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                {`Our transport services provide safe, reliable, and comfortable transportation for all your needs. Whether you're heading to medical appointments, shopping, social activities, or community events, our drivers are trained to provide assistance.`}
-              </Typography>
-            </Box>
-          </Box>
-        </Container>
-      </Box>
-
-      {/* Main Content 8 - Gardening */}
-      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
-        <Container maxWidth="xl">
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignItems: "center",
-              gap: { xs: 3, sm: 4, md: 0 },
-            }}
-          >
-            {/* Image - Always on top for mobile/tablet */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                mb: { xs: 3, md: 0 },
-                order: { xs: 1, md: 2 },
-              }}
-            >
-              <Image
-                src={gardening}
-                alt="Gardening & Outdoor Maintenance"
-                width={300}
-                height={300}
-                style={{
-                  width: "100%",
-                  maxWidth: "400px", // Changed from 500px to 400px  for mobile view
-                  height: "auto",
-                  borderRadius: "12px",
-                }}
-              />
-            </Box>
-
-            {/* Text Content - Always below image for mobile/tablet */}
+            {/* Left Side - Text Content */}
             <Box
               sx={{
                 width: { xs: "100%", md: "50%" },
@@ -784,96 +1120,6 @@ const ServicesPage = () => {
                   mb: { xs: 2, md: 3 },
                   textAlign: { xs: "center", md: "left" },
                   width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Gardening & Outdoor Maintenance
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Professional gardening and outdoor maintenance services to keep
-                your property beautiful and well-maintained.
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Our gardening and outdoor maintenance services help keep your
-                property looking beautiful and well-maintained throughout the
-                year. Our experienced gardeners understand the local climate and
-                can provide seasonal care.
-              </Typography>
-            </Box>
-          </Box>
-        </Container>
-      </Box>
-
-      {/* Main Content 9 - Domestic Assistance */}
-      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
-        <Container maxWidth="xl">
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignItems: "center",
-              gap: { xs: 3, sm: 4, md: 0 },
-            }}
-          >
-            {/* Left Side - Image */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                mb: { xs: 3, md: 0 },
-              }}
-            >
-              <Image
-                src={domesticAssistance}
-                alt="Domestic Assistance"
-                width={300}
-                height={300}
-                style={{
-                  width: "100%",
-                  maxWidth: "400px", // Changed from 500px to 400px  for mobile view
-                  height: "auto",
-                  borderRadius: "12px",
-                }}
-              />
-            </Box>
-
-            {/* Right Side - Text Content */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                // pl: { xs: 0, md: 4 },
-                textAlign: { xs: "center", md: "left" },
-                width: { xs: "100%", md: "50%" },
-              }}
-            >
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
-                  color: "text.primary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
                 }}
               >
                 Domestic Assistance
@@ -908,22 +1154,8 @@ const ServicesPage = () => {
                 professional cleaners are here to help.
               </Typography>
             </Box>
-          </Box>
-        </Container>
-      </Box>
 
-      {/* Main Content 10 - Meal Preparation */}
-      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
-        <Container maxWidth="xl">
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignItems: "center",
-              gap: { xs: 3, sm: 4, md: 0 },
-            }}
-          >
-            {/* Image - Always on top for mobile/tablet */}
+            {/* Right Side - Image */}
             <Box
               sx={{
                 width: { xs: "100%", md: "50%" },
@@ -935,70 +1167,17 @@ const ServicesPage = () => {
               }}
             >
               <Image
-                src={mealPreparation}
-                alt="Meal Preparation & Nutrition"
+                src={domesticAssistance}
+                alt="Domestic Assistance"
                 width={300}
                 height={300}
                 style={{
                   width: "100%",
-                  maxWidth: "400px", // Changed from 500px to 400px  for mobile view
+                  maxWidth: "400px",
                   height: "auto",
                   borderRadius: "12px",
                 }}
               />
-            </Box>
-
-            {/* Text Content - Always below image for mobile/tablet */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                pl: { xs: 0, md: 19 },
-                textAlign: { xs: "center", md: "left" },
-                order: { xs: 2, md: 1 },
-              }}
-            >
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
-                  color: "text.primary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Meal Preparation & Nutrition
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Nutritious meal preparation and cooking services tailored to
-                dietary requirements and preferences.
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Our meal preparation and nutrition services ensure you receive
-                healthy, delicious meals that meet your dietary requirements and
-                preferences. We work with nutritionists and dietitians to create
-                meal plans that support your health goals.
-              </Typography>
             </Box>
           </Box>
         </Container>
