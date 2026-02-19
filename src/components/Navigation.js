@@ -238,7 +238,7 @@ const Navigation = () => {
             key={item.name}
             onClick={() => handleNavigation(item.path, item.name)}
             sx={{
-              bgcolor: isActivePage(item.path) ? "primary.main" : "transparent",
+              bgcolor: isActivePage(item.path) ? "#0d9488" : "transparent",
               color: isActivePage(item.path) ? "white" : "inherit",
               borderRadius: 1,
               mx: 1,
@@ -264,12 +264,16 @@ const Navigation = () => {
             setMobileOpen(false);
           }}
           sx={{
-            bgcolor: "primary.main",
-            color: "white",
+            bgcolor: "white",
+            color: "#000000",
             borderRadius: 1,
             mx: 1,
             mb: 0.5,
             width: "50%",
+            border: "1px solid #e0e0e0",
+            "&:hover": {
+              bgcolor: "grey.100",
+            },
           }}
         >
           <ListItemText
@@ -407,7 +411,15 @@ const Navigation = () => {
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+          keepMounted: true,
+          slotProps: {
+            backdrop: {
+              sx: {
+                backgroundColor: "rgba(0,0,0,0.2)",
+                backdropFilter: "none",
+              },
+            },
+          },
         }}
         sx={{
           display: { xs: "block", md: "none" },
