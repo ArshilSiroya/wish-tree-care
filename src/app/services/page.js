@@ -7,15 +7,17 @@ import Image from "next/image";
 import ndisSupport from "../../../public/images/general/Care-and-support-2.jpg";
 import homeCare from "../../../public/images/general/Home-care.jpg";
 import homeSupport from "../../../public/images/general/home-support.jpg";
-import agedCare from "../../../public/images/general/aged-care.jpg";
+import agedCare from "../../../public/images/general/care.jpg";
 import personalCare from "../../../public/images/general/personal-care.jpg";
-import socialServices from "../../../public/images/general/social-service.jpg";
-import transport from "../../../public/images/general/transport-service.jpg";
-import gardening from "../../../public/images/general/Gardening.jpg";
-import domesticAssistance from "../../../public/images/general/domestic-assistance.jpg";
+import socialServices from "../../../public/images/general/social.png";
+import transport from "../../../public/images/general/transport.jpg";
+import gardening from "../../../public/images/general/gardening3.jpg";
+import domesticAssistance from "../../../public/images/general/Domestic.jpg";
 import domesticAssistance2 from "../../../public/images/general/domestic-assistance-2.jpg";
-import cleaning from "../../../public/images/general/cleaning.jpg";
-import mealPreparation from "../../../public/images/general/Meal-preparation.jpg";
+import cleaning from "../../../public/images/general/cleaning2.jpg";
+import mealPreparation from "../../../public/images/general/cooking4.jpg";
+import Equipment from "../../../public/images/general/equipment.jpg";
+import modification from "../../../public/images/general/modification2.jpg";
 import staffingServices from "../../../public/images/general/staffservice.jpg";
 import servicesbanner from "../../../public/images/hero/services.jpg";
 
@@ -214,12 +216,13 @@ const ServicesPage = () => {
               <Image
                 src={mealPreparation}
                 alt="Meal Preparation & Nutrition"
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 style={{
-                  width: "100%",
-                  maxWidth: "400px",
-                  height: "auto",
+                  width: "400px",
+                  // maxWidth: "400px",
+                  height: "400px",
+                  objectFit: "cover",
                   borderRadius: "12px",
                 }}
               />
@@ -305,13 +308,14 @@ const ServicesPage = () => {
               <Image
                 src={gardening}
                 alt="Gardening & Outdoor Maintenance"
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 style={{
-                  width: "100%",
-                  maxWidth: "400px",
-                  height: "auto",
+                  width: "400px",
+                  // maxWidth: "400px",
+                  height: "400px",
                   borderRadius: "12px",
+                  objectFit: "cover",
                 }}
               />
             </Box>
@@ -366,7 +370,6 @@ const ServicesPage = () => {
                 can provide seasonal care.
               </Typography>
             </Box>
-            
           </Box>
         </Container>
       </Box>
@@ -429,8 +432,8 @@ const ServicesPage = () => {
                 }}
               >
                 Our cleaning services help you maintain a clean, organized, and
-                healthy home environment. We offer regular housekeeping and
-                deep cleaning tailored to your needs.
+                healthy home environment. We offer regular housekeeping and deep
+                cleaning tailored to your needs.
               </Typography>
             </Box>
 
@@ -448,12 +451,13 @@ const ServicesPage = () => {
               <Image
                 src={cleaning}
                 alt="Cleaning"
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 style={{
-                  width: "100%",
-                  maxWidth: "400px",
-                  height: "auto",
+                  width: "400px",
+                  // maxWidth: "400px",
+                  height: "400px",
+                  objectFit: "cover",
                   borderRadius: "12px",
                 }}
               />
@@ -486,12 +490,13 @@ const ServicesPage = () => {
               <Image
                 src={agedCare}
                 alt="Personal Care Services"
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 style={{
-                  width: "100%",
-                  maxWidth: "400px",
-                  height: "auto",
+                  width: "400px",
+                  // maxWidth: "400px",
+                  height: "400px",
+                  objectFit: "cover",
                   borderRadius: "12px",
                 }}
               />
@@ -581,7 +586,7 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Transport Services
+                Community Transport
               </Typography>
               <Typography
                 variant="body1"
@@ -625,12 +630,13 @@ const ServicesPage = () => {
               <Image
                 src={transport}
                 alt="Transport Services"
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 style={{
-                  width: "100%",
-                  maxWidth: "400px",
+                  width: "400px",
+                  // maxWidth: "400px",
                   height: "400px",
+                  objectFit: "cover",
                   borderRadius: "12px",
                 }}
               />
@@ -661,15 +667,16 @@ const ServicesPage = () => {
               }}
             >
               <Image
-                src={domesticAssistance2}
+                src={domesticAssistance}
                 alt="Domestic Assistance"
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 style={{
-                  width: "100%",
-                  maxWidth: "400px",
-                  height: "auto",
+                  width: "400px",
+                  // maxWidth: "400px",
+                  height: "400px",
                   borderRadius: "12px",
+                  objectFit: "cover",
                 }}
               />
             </Box>
@@ -820,7 +827,7 @@ const ServicesPage = () => {
         </Container>
       </Box>
 
-      {/* Main Content 3 - CHSP */}
+      {/* Equipment & Technology (image left, text right) */}
       <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
         <Container maxWidth="xl">
           <Box
@@ -842,198 +849,16 @@ const ServicesPage = () => {
               }}
             >
               <Image
-                src={homeSupport}
-                alt="CHSP Support Services"
-                width={300}
-                height={300}
+                src={Equipment}
+                alt="Equipment & Technology"
+                width={400}
+                height={400}
                 style={{
-                  width: "100%",
-                  maxWidth: "400px", // Changed from 500px to 400px  for mobile view
-                  height: "auto",
+                  width: "400px",
+                  // maxWidth: "400px",
+                  height: "400px",
                   borderRadius: "12px",
-                }}
-              />
-            </Box>
-
-            {/* Right Side - Text Content */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                // pl: { xs: 0, md: 4 },
-                textAlign: { xs: "center", md: "left" },
-                width: { xs: "100%", md: "50%" },
-              }}
-            >
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
-                  color: "text.primary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                }}
-              >
-                CHSP (Commonwealth Home Support Programme)
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Entry-level support services to help older people live
-                independently at home and in their community.
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                The CHSP provides entry-level support services to help older
-                people maintain their independence and continue living at home.
-                Our services are designed to be flexible and responsive to your
-                changing needs.
-              </Typography>
-            </Box>
-          </Box>
-        </Container>
-      </Box>
-
-      {/* Main Content 4 - Aged Care */}
-      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
-        <Container maxWidth="xl">
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignItems: "center",
-              gap: { xs: 3, sm: 4, md: 0 },
-            }}
-          >
-            {/* Image - Always on top for mobile/tablet */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                mb: { xs: 3, md: 0 },
-                order: { xs: 1, md: 2 },
-              }}
-            >
-              <Image
-                src={agedCare}
-                alt="Aged Care Services"
-                width={300}
-                height={300}
-                style={{
-                  width: "100%",
-                  maxWidth: "400px", // Changed from 500px to 400px  for mobile view
-                  height: "auto",
-                  borderRadius: "12px",
-                }}
-              />
-            </Box>
-
-            {/* Text Content - Always below image for mobile/tablet */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                pl: { xs: 0, md: 19 },
-                textAlign: { xs: "center", md: "left" },
-                order: { xs: 2, md: 1 },
-              }}
-            >
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
-                  color: "text.primary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Aged Care Services
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  mb: { xs: 2, md: 3 },
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Specialized care services designed to meet the unique needs of
-                elderly individuals and their families.
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
-                  lineHeight: 1.6,
-                  color: "text.secondary",
-                  textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
-                }}
-              >
-                Our aged care services are specifically designed to meet the
-                unique needs of elderly individuals and their families. We
-                understand that aging can bring various challenges, and our
-                compassionate caregivers are trained to provide the highest
-                quality of care.
-              </Typography>
-            </Box>
-          </Box>
-        </Container>
-      </Box>
-
-      {/* Main Content 6 - Social Services */}
-      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
-        <Container maxWidth="xl">
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignItems: "center",
-              gap: { xs: 3, sm: 4, md: 0 },
-            }}
-          >
-            {/* Left Side - Image */}
-            <Box
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                mb: { xs: 3, md: 0 },
-              }}
-            >
-              <Image
-                src={socialServices}
-                alt="Social Services & Companionship"
-                width={300}
-                height={300}
-                style={{
-                  width: "100%",
-                  maxWidth: "400px",
-                  height: "auto",
-                  borderRadius: "12px",
+                  objectFit: "cover",
                 }}
               />
             </Box>
@@ -1053,10 +878,9 @@ const ServicesPage = () => {
                   color: "text.primary",
                   mb: { xs: 2, md: 3 },
                   textAlign: { xs: "center", md: "left" },
-                  width: { xs: "100%", md: "90%" },
                 }}
               >
-                Social Services & Companionship
+                Equipment & Technology
               </Typography>
               <Typography
                 variant="body1"
@@ -1069,8 +893,8 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Social support and companionship services to enhance quality of
-                life and community engagement.
+                Guidance and access to mobility aids, assistive technology and
+                equipment to support safe, independent living at home.
               </Typography>
               <Typography
                 variant="body2"
@@ -1082,17 +906,17 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                We understand that social connection is vital for mental and
-                emotional well-being. Our social services and companionship
-                programs are designed to reduce isolation, enhance quality of
-                life, and help you stay connected to your community.
+                We help you find and use the right equipment and technology for
+                your needs—from mobility aids and daily living aids to
+                communication and safety devices—so you can stay safe and
+                connected at home.
               </Typography>
             </Box>
           </Box>
         </Container>
       </Box>
 
-      {/* Main Content 9 - Domestic Assistance (text left, image right) */}
+      {/* Minor Home Modifications (text left, image right) */}
       <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
         <Container maxWidth="xl">
           <Box
@@ -1123,7 +947,7 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Domestic Assistance
+                Minor Home Modifications
               </Typography>
               <Typography
                 variant="body1"
@@ -1136,8 +960,8 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Comprehensive domestic support including cleaning, laundry, and
-                household management services.
+                Safe home adjustments and small changes to support mobility,
+                access and independence in your own home.
               </Typography>
               <Typography
                 variant="body2"
@@ -1149,10 +973,10 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Our domestic assistance services help you maintain a clean,
-                organized, and comfortable home environment. We understand that
-                keeping up with household tasks can become challenging, and our
-                professional cleaners are here to help.
+                We help with minor home modifications—from grab rails and
+                ramps to better lighting and access—so your home remains safe
+                and easy to navigate. Our team can guide you on what changes
+                will make the biggest difference for you.
               </Typography>
             </Box>
 
@@ -1168,15 +992,16 @@ const ServicesPage = () => {
               }}
             >
               <Image
-                src={domesticAssistance}
-                alt="Domestic Assistance"
-                width={300}
-                height={300}
+                src={modification}
+                alt="Minor Home Modifications"
+                width={400}
+                height={400}
                 style={{
-                  width: "100%",
-                  maxWidth: "400px",
-                  height: "auto",
+                  width: "400px",
+                  // maxWidth: "400px",
+                  height: "400px",
                   borderRadius: "12px",
+                  objectFit: "cover",
                 }}
               />
             </Box>
@@ -1184,8 +1009,8 @@ const ServicesPage = () => {
         </Container>
       </Box>
 
-      {/* Main Content 11 - Staffing Services */}
-      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 }, marginBottom: "100px" }}>
+      {/* Main Content 6 - Social Services */}
+      <Box sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 } }}>
         <Container maxWidth="xl">
           <Box
             sx={{
@@ -1206,15 +1031,16 @@ const ServicesPage = () => {
               }}
             >
               <Image
-                src={staffingServices}
-                alt="Staffing Services"
-                width={300}
-                height={300}
+                src={socialServices}
+                alt="Social Support"
+                width={400}
+                height={400}
                 style={{
-                  width: "100%",
-                  maxWidth: "400px", // Changed from 500px to 400px  for mobile view
-                  height: "auto",
+                  width: "400px",
+                  // maxWidth: "400px",
+                  height: "400px",
                   borderRadius: "12px",
+                  objectFit: "cover",
                 }}
               />
             </Box>
@@ -1223,9 +1049,7 @@ const ServicesPage = () => {
             <Box
               sx={{
                 width: { xs: "100%", md: "50%" },
-                // pl: { xs: 0, md: 4 },
                 textAlign: { xs: "center", md: "left" },
-                width: { xs: "100%", md: "50%" },
               }}
             >
               <Typography
@@ -1236,9 +1060,10 @@ const ServicesPage = () => {
                   color: "text.primary",
                   mb: { xs: 2, md: 3 },
                   textAlign: { xs: "center", md: "left" },
+                  width: { xs: "100%", md: "90%" },
                 }}
               >
-                Staffing Services
+                Social Support
               </Typography>
               <Typography
                 variant="body1"
@@ -1251,8 +1076,8 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Professional staffing solutions providing qualified and
-                experienced caregivers for your specific needs.
+                Social support services to enhance quality of life and community
+                engagement.
               </Typography>
               <Typography
                 variant="body2"
@@ -1264,15 +1089,23 @@ const ServicesPage = () => {
                   width: { xs: "100%", md: "90%" },
                 }}
               >
-                Our staffing services provide qualified, experienced, and
-                compassionate caregivers who are carefully matched to your
-                specific needs and preferences. We conduct thorough background
-                checks and provide ongoing training.
+                We understand that social connection is vital for mental and
+                emotional well-being. Our social support programs are designed
+                to reduce isolation, enhance quality of life, and help you stay
+                connected to your community.
               </Typography>
             </Box>
           </Box>
         </Container>
       </Box>
+
+      {/* Main Content 9 - Domestic Assistance (text left, image right) */}
+    
+
+      {/* Main Content 11 - Staffing Services */}
+      <Box
+        sx={{ flex: 1, pt: { xs: 4, sm: 6, md: 8 }, marginBottom: "100px" }}
+      ></Box>
 
       <Footer />
     </Box>
