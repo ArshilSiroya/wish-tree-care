@@ -108,17 +108,30 @@ const Navigation = () => {
     setLoading(true);
     setAlert({ show: false, message: "", type: "success" });
 
-    // Simulate form submission
-    setTimeout(() => {
-      // Show success message
+    try {
+      const res = await fetch("/api/careers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        setAlert({
+          show: true,
+          message: data.message || "Something went wrong. Please try again.",
+          type: "error",
+        });
+        setLoading(false);
+        return;
+      }
+
       setAlert({
         show: true,
         message:
           "Thank you! Your inquiry has been submitted. We'll contact you soon.",
         type: "success",
       });
-
-      // Reset form
       setFormData({
         firstName: "",
         lastName: "",
@@ -126,15 +139,20 @@ const Navigation = () => {
         phone: "",
         address: "",
       });
-
       setLoading(false);
 
-      // Close modal after 4 seconds
       setTimeout(() => {
         setCareersModalOpen(false);
         setAlert({ show: false, message: "", type: "success" });
       }, 4000);
-    }, 500);
+    } catch (err) {
+      setAlert({
+        show: true,
+        message: "Something went wrong. Please try again.",
+        type: "error",
+      });
+      setLoading(false);
+    }
   };
 
   const handleCloseModal = () => {
@@ -161,7 +179,25 @@ const Navigation = () => {
     e.preventDefault();
     setContactLoading(true);
     setContactAlert({ show: false, message: "", type: "success" });
-    setTimeout(() => {
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contactFormData),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        setContactAlert({
+          show: true,
+          message: data.message || "Something went wrong. Please try again.",
+          type: "error",
+        });
+        setContactLoading(false);
+        return;
+      }
+
       setContactAlert({
         show: true,
         message:
@@ -176,11 +212,19 @@ const Navigation = () => {
         message: "",
       });
       setContactLoading(false);
+
       setTimeout(() => {
         setContactModalOpen(false);
         setContactAlert({ show: false, message: "", type: "success" });
       }, 4000);
-    }, 500);
+    } catch (err) {
+      setContactAlert({
+        show: true,
+        message: "Something went wrong. Please try again.",
+        type: "error",
+      });
+      setContactLoading(false);
+    }
   };
 
   const handleCloseContactModal = () => {

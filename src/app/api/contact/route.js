@@ -3,7 +3,7 @@ import { google } from "googleapis";
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { firstName, lastName, email, phone, address } = body;
+    const { firstName, lastName, email, phone, message } = body;
 
     const sheetId = process.env.GOOGLE_SHEET_ID;
     const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
@@ -26,7 +26,7 @@ export async function POST(request) {
     });
 
     const sheets = google.sheets({ version: "v4", auth });
-    const range = process.env.GOOGLE_SHEET_RANGE || "Careers!A2:F";
+    const range = process.env.GOOGLE_CONTACT_SHEET_RANGE || "Contact-Us!A2:F";
 
     const timestamp = new Date().toLocaleString("en-AU", {
       dateStyle: "medium",
@@ -46,18 +46,18 @@ export async function POST(request) {
             lastName || "",
             email || "",
             phone || "",
-            address || "",
+            message || "",
           ],
         ],
       },
     });
 
     return Response.json(
-      { success: true, message: "Inquiry submitted successfully" },
+      { success: true, message: "Message sent successfully" },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error submitting careers form:", error);
+    console.error("Error submitting contact form:", error);
     return Response.json(
       {
         success: false,
