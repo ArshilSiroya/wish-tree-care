@@ -506,15 +506,15 @@ const Navigation = () => {
                   setContactModalOpen(true);
                 }}
                 sx={{
-                  bgcolor: "#268CED",
-                  color: "#ffffff",
+                  bgcolor: "#ffffff",
+                  color: "#000000",
                   px: 3,
                   py: 1,
                   fontWeight: 600,
                   borderRadius: "50px",
-                  boxShadow: "none",
+                  boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
                   "&:hover": {
-                    bgcolor: "#1a6fc0",
+                    bgcolor: "grey.100",
                   },
                   transition: "background-color 0.2s ease",
                 }}
