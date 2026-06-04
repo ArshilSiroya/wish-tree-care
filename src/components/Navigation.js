@@ -1,12 +1,10 @@
 "use client";
 
 import {
-  AppBar,
   Toolbar,
   Typography,
   Button,
   Box,
-  Container,
   IconButton,
   Drawer,
   List,
@@ -28,6 +26,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
+import { smoothScrollToId } from "../utils/smoothScroll";
 
 const Navigation = () => {
   const router = useRouter();
@@ -71,16 +70,34 @@ const Navigation = () => {
     // { name: 'Contact Us', path: '#' },
   ];
 
-  const isActivePage = (path) => {
+  const isActivePage = (path, itemName) => {
+    if (itemName === "Careers" || path === "#") {
+      return false;
+    }
     if (path === "/") {
       return pathname === "/";
     }
     return pathname === path;
   };
 
+  const scrollToAboutSection = () => {
+    smoothScrollToId("about");
+    window.history.replaceState(null, "", "/");
+  };
+
   const handleNavigation = (path, itemName) => {
     if (itemName === "Careers") {
       setCareersModalOpen(true);
+      setMobileOpen(false);
+      return;
+    }
+    if (itemName === "About Us") {
+      if (pathname === "/") {
+        scrollToAboutSection();
+      } else {
+        sessionStorage.setItem("scrollToAbout", "1");
+        router.push("/");
+      }
       setMobileOpen(false);
       return;
     }
@@ -251,22 +268,26 @@ const Navigation = () => {
   }, []);
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box sx={{ textAlign: "center" }}>
       <Box
         sx={{
           my: 2,
+          px: 2,
           cursor: "pointer",
           display: "flex",
           justifyContent: "center",
         }}
-        onClick={() => handleNavigation("/")}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleNavigation("/");
+        }}
       >
         <Image
-          src="/wishtree-Logo.png"
+          src="/Group-2.png"
           alt="Wish Tree Care"
-          width={150}
-          height={50}
-          style={{ objectFit: "contain" }}
+          width={180}
+          height={56}
+          style={{ objectFit: "contain", width: "100%", maxWidth: 200, height: "auto" }}
         />
       </Box>
       <List
@@ -280,10 +301,26 @@ const Navigation = () => {
         {navItems.map((item) => (
           <ListItem
             key={item.name}
-            onClick={() => handleNavigation(item.path, item.name)}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleNavigation(item.path, item.name);
+            }}
             sx={{
-              bgcolor: isActivePage(item.path) ? "#0d9488" : "transparent",
-              color: isActivePage(item.path) ? "white" : "inherit",
+              bgcolor: isActivePage(item.path, item.name)
+                ? "rgba(0, 0, 0, 0.08)"
+                : "#ffffff",
+              color: "#000000",
+              border: isActivePage(item.path, item.name)
+                ? "none"
+                : "1px solid #eeeeee",
+              boxShadow: isActivePage(item.path, item.name)
+                ? "none"
+                : "0 1px 3px rgba(0, 0, 0, 0.06)",
+              "&:hover": {
+                bgcolor: isActivePage(item.path, item.name)
+                  ? "rgba(0, 0, 0, 0.1)"
+                  : "#ffffff",
+              },
               borderRadius: 1,
               mx: 1,
               mb: 0.5,
@@ -295,15 +332,17 @@ const Navigation = () => {
               sx={{
                 textAlign: "center",
                 "& .MuiTypography-root": {
-                  fontWeight: 600,
+                  fontWeight: isActivePage(item.path, item.name) ? 700 : 600,
                   fontSize: "1.1rem",
+                  color: "#000000",
                 },
               }}
             />
           </ListItem>
         ))}
         <ListItem
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setContactModalOpen(true);
             setMobileOpen(false);
           }}
@@ -336,118 +375,156 @@ const Navigation = () => {
   );
 
   return (
-    <AppBar
-      position="static"
-      elevation={0}
-      sx={{
-        backgroundColor: "transparent",
-        color: "white",
-        borderBottom: "none",
-        position: "relative",
-        zIndex: 20,
-      }}
-    >
-      <Container maxWidth="lg">
-        <Toolbar sx={{ px: { xs: 0 } }}>
-          {/* Logo */}
-          <Box
-            sx={{
-              flexGrow: 0,
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-            }}
-            onClick={() => handleNavigation("/")}
+    <>
+      <Box
+        component="header"
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 10,
+          bgcolor: "transparent",
+          py: { xs: 1.5, md: 2 },
+          px: { xs: 2, sm: 3, md: 4, lg: 5 },
+          pointerEvents: "none",
+        }}
+      >
+        <Box
+          sx={{
+            maxWidth: 1280,
+            width: "100%",
+            mx: "auto",
+            bgcolor: "rgba(255, 255, 255, 0.18)",
+            backdropFilter: "blur(20px) saturate(180%)",
+            WebkitBackdropFilter: "blur(20px) saturate(180%)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            color: "#1f2937",
+            borderRadius: { xs: 28, md: "50px" },
+            boxShadow:
+              "0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5)",
+            px: { xs: 1.5, sm: 2.5, md: 3 },
+            pointerEvents: "auto",
+          }}
+        >
+          <Toolbar
+            disableGutters
+            sx={{ minHeight: { xs: 60, md: 76 }, gap: 1 }}
           >
-            <Image
-              src="/Frame-2147227068.png"
-              alt="Wish Tree Care"
-              width={190}
-              height={60}
-              style={{ objectFit: "contain" }}
-            />
-          </Box>
+            {/* Logo */}
+            <Box
+              sx={{
+                flexGrow: 0,
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+              }}
+              onClick={() => handleNavigation("/")}
+            >
+              <Image
+                src="/Frame-2147227068.png"
+                alt="Wish Tree Care"
+                width={200}
+                height={70}
+                style={{
+                  objectFit: "contain",
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
+              />
+            </Box>
 
-          {/* Navigation Links - Desktop */}
-          <Box
-            sx={{
-              display: { xs: "none", md: "flex" },
-              gap: 1,
-              flexGrow: 1,
-              justifyContent: "center",
-              mx: 2,
-            }}
-          >
-            {navItems.map((item) => (
-              <Button
-                key={item.name}
+            {/* Navigation Links - Desktop */}
+            <Box
+              sx={{
+                display: { xs: "none", md: "flex" },
+                gap: 1,
+                flexGrow: 1,
+                justifyContent: "center",
+                mx: 2,
+              }}
+            >
+              {navItems.map((item) => (
+                <Button
+                  key={item.name}
+                  onClick={() => handleNavigation(item.path, item.name)}
+                  sx={{
+                    textTransform: "none",
+                    fontWeight: isActivePage(item.path, item.name) ? 600 : 700,
+                    fontSize: "0.95rem",
+                    px: 2,
+                    py: 0.6,
+                    borderRadius: "50px",
+                    color: isActivePage(item.path, item.name)
+                      ? "#000000"
+                      : "#ffffff",
+                    bgcolor: isActivePage(item.path, item.name)
+                      ? "#ffffff"
+                      : "transparent",
+                    boxShadow: isActivePage(item.path, item.name)
+                      ? "0 2px 8px rgba(0, 0, 0, 0.12)"
+                      : "none",
+                    "&:hover": {
+                      bgcolor: isActivePage(item.path, item.name)
+                        ? "#ffffff"
+                        : "rgba(255, 255, 255, 0.1)",
+                      color: isActivePage(item.path, item.name)
+                        ? "#000000"
+                        : "#ffffff",
+                    },
+                    transition: "all 0.2s ease",
+                  }}
+                >
+                  {item.name}
+                </Button>
+              ))}
+            </Box>
+
+            {/* Mobile Menu Button */}
+            <Box
+              sx={{
+                display: { xs: "flex", md: "none" },
+                marginLeft: "auto", // This pushes the menu button to the right
+              }}
+            >
+              <IconButton
                 color="inherit"
-                onClick={() => handleNavigation(item.path, item.name)}
+                aria-label="open drawer"
+                edge="end"
+                onClick={handleDrawerToggle}
+                sx={{ ml: 1 }}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Box>
+
+            {/* Contact Us Button - Desktop */}
+            <Box sx={{ display: { xs: "none", md: "block" } }}>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setContactModalOpen(true);
+                }}
                 sx={{
-                  textTransform: "none",
+                  bgcolor: "#268CED",
+                  color: "#ffffff",
+                  px: 3,
+                  py: 1,
                   fontWeight: 600,
-                  fontSize: "0.95rem",
-                  px: 2,
-                  py: 0.6,
-                  borderRadius: 2,
-                  color: isActivePage(item.path) ? "#000000" : "white",
-                  bgcolor: isActivePage(item.path) ? "#ffffff" : "transparent",
+                  borderRadius: "50px",
+                  boxShadow: "none",
                   "&:hover": {
-                    bgcolor: "rgba(255,255,255,0.2)",
-                    transform: "translateY(-1px)",
+                    bgcolor: "#1a6fc0",
                   },
-                  transition: "all 0.2s ease",
+                  transition: "background-color 0.2s ease",
                 }}
               >
-                {item.name}
+                Contact Us
               </Button>
-            ))}
-          </Box>
-
-          {/* Mobile Menu Button */}
-          <Box
-            sx={{
-              display: { xs: "flex", md: "none" },
-              marginLeft: "auto", // This pushes the menu button to the right
-            }}
-          >
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="end"
-              onClick={handleDrawerToggle}
-              sx={{ ml: 1 }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Box>
-
-          {/* Contact Us Button - Desktop */}
-          <Box sx={{ display: { xs: "none", md: "block" } }}>
-            <Button
-              variant="contained"
-              onClick={() => {
-                setContactModalOpen(true);
-              }}
-              sx={{
-                bgcolor: "white",
-                color: "#000000",
-                px: 3,
-                py: 1,
-                fontWeight: 600,
-                borderRadius: 2,
-                "&:hover": {
-                  bgcolor: "grey.100",
-                  transform: "translateY(-1px)",
-                },
-                transition: "all 0.2s ease",
-              }}
-            >
-              Contact Us
-            </Button>
-          </Box>
-        </Toolbar>
-      </Container>
+            </Box>
+          </Toolbar>
+        </Box>
+      </Box>
 
       {/* Mobile Drawer */}
       <Drawer
@@ -745,7 +822,7 @@ const Navigation = () => {
           </DialogActions>
         </form>
       </Dialog>
-    </AppBar>
+    </>
   );
 };
 

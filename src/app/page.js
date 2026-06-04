@@ -48,6 +48,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import DevicesIcon from "@mui/icons-material/Devices";
+import { smoothScrollToId } from "../utils/smoothScroll";
 
 const HomePage = () => {
   const theme = useTheme();
@@ -79,6 +80,38 @@ const HomePage = () => {
 
     return () => clearInterval(interval);
   }, [heroImages.length]);
+
+  const scrollToAbout = () => {
+    smoothScrollToId("about");
+  };
+
+  // Scroll to About only when navigating from another page (not on refresh)
+  useEffect(() => {
+    const previousScrollRestoration = history.scrollRestoration;
+    history.scrollRestoration = "manual";
+
+    const shouldScrollToAbout =
+      sessionStorage.getItem("scrollToAbout") === "1";
+
+    if (shouldScrollToAbout) {
+      sessionStorage.removeItem("scrollToAbout");
+      if (window.location.hash) {
+        window.history.replaceState(null, "", "/");
+      }
+      requestAnimationFrame(() => {
+        requestAnimationFrame(scrollToAbout);
+      });
+    } else {
+      if (window.location.hash) {
+        window.history.replaceState(null, "", "/");
+      }
+      window.scrollTo(0, 0);
+    }
+
+    return () => {
+      history.scrollRestoration = previousScrollRestoration;
+    };
+  }, []);
 
   // Re-enable transition after reset
   useEffect(() => {
@@ -112,6 +145,7 @@ const HomePage = () => {
           height: { xs: "720px", xl: "950px" },
         }}
       >
+        <Navigation />
         {/* Background Pattern */}
         <Box
           sx={{
@@ -179,43 +213,29 @@ const HomePage = () => {
           </Box>
         </Box>
 
-        {/* Navigation Layer */}
-        <Box
+        {/* Hero Content - Title and Subtitle */}
+        <Container
+          maxWidth="lg"
           sx={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
+            inset: 0,
             zIndex: 2,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <Navigation />
-
-          {/* Hero Content - Title and Subtitle */}
-          <Container
-            maxWidth="lg"
+          <Box
             sx={{
-              position: "relative",
-              zIndex: 2,
-              height: "65%",
+              textAlign: "center",
+              color: "white",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <Box
-              sx={{
-                textAlign: "center",
-                color: "white",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                mt: { xs: 25, xl: 29 },
-              }}
-            >
               <Typography
                 variant="h1"
                 sx={{
@@ -281,11 +301,16 @@ const HomePage = () => {
               />
             ))}
           </Box>
-        </Box>
       </Box>
 
       {/* About Section */}
-      <Box sx={{ pt: { xs: 6, md: 17 } }}>
+      <Box
+        id="about"
+        sx={{
+          pt: { xs: 6, md: 17 },
+          scrollMarginTop: { xs: "80px", md: "100px" },
+        }}
+      >
         <Container maxWidth="lg">
           <Box
             sx={{
@@ -384,10 +409,10 @@ const HomePage = () => {
               >
                 To amplify that promise,{" "}
                 <strong>Wishtree Care has partnered with Trilogy Care</strong>.
-                Together, we turn approved funding into more care hours, more
-                control and less complexity for every client. {`Trilogy Care's`}{" "}
-                model keeps overheads low so more of your budget becomes real
-                support.
+                Together, we turn approved Support at Home program funding into
+                more care hours, more control and less complexity for every
+                client. Trilogy Care's model keeps overheads low so more of your
+                budget becomes real support.  
               </Typography>
 
               {/* Trilogy Care Logo */}
@@ -571,9 +596,9 @@ const HomePage = () => {
                   }}
                 >
                   We provide care coordination support to help you navigate your
-                  support at home funding. We strive to understand your care needs
-                  in full and connect you with the community resources to help
-                  you live independently and safely in your home.
+                  support at home funding. We strive to understand your care
+                  needs in full and connect you with the community resources to
+                  help you live independently and safely in your home.
                 </Typography>
               </Box>
 
@@ -593,8 +618,7 @@ const HomePage = () => {
                   {
                     name: "Educating & Supporting",
                     icon: <SchoolIcon />,
-                    description:
-                      "Educating and supporting you and your carer",
+                    description: "Educating and supporting you and your carer",
                   },
                   {
                     name: "Community Care & Support",
@@ -976,8 +1000,8 @@ const HomePage = () => {
                   }}
                 >
                   We help you ensure safe & functional mobility at home & in
-                  community by providing guidance and access to right equipment &
-                  tradesman.
+                  community by providing guidance and access to right equipment
+                  & tradesman.
                 </Typography>
               </Box>
 

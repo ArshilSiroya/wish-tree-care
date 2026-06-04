@@ -39,12 +39,7 @@ const ServicesPage = () => {
           height: { xs: "300px", sm: "350px", md: "490px" },
         }}
       >
-        {/* Navigation positioned on top of hero section */}
-        <Box
-          sx={{ position: "absolute", top: 0, left: 0, right: 0, zIndex: 10 }}
-        >
-          <Navigation />
-        </Box>
+        <Navigation />
 
         {/* Hero Background Image */}
         <Box
