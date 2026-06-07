@@ -287,7 +287,12 @@ const Navigation = () => {
           alt="Wish Tree Care"
           width={180}
           height={56}
-          style={{ objectFit: "contain", width: "100%", maxWidth: 200, height: "auto" }}
+          style={{
+            objectFit: "contain",
+            width: "100%",
+            maxWidth: 200,
+            height: "auto",
+          }}
         />
       </Box>
       <List
@@ -395,14 +400,14 @@ const Navigation = () => {
             maxWidth: 1280,
             width: "100%",
             mx: "auto",
-            bgcolor: "rgba(255, 255, 255, 0.18)",
-            backdropFilter: "blur(20px) saturate(180%)",
-            WebkitBackdropFilter: "blur(20px) saturate(180%)",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
+            bgcolor: "rgba(250, 243, 228, 0.72)",
+            backdropFilter: "blur(20px) saturate(160%)",
+            WebkitBackdropFilter: "blur(20px) saturate(160%)",
+            border: "1px solid rgba(255, 252, 245, 0.45)",
             color: "#1f2937",
             borderRadius: { xs: 28, md: "50px" },
             boxShadow:
-              "0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5)",
+              "0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.55)",
             px: { xs: 1.5, sm: 2.5, md: 3 },
             pointerEvents: "auto",
           }}
@@ -422,7 +427,8 @@ const Navigation = () => {
               onClick={() => handleNavigation("/")}
             >
               <Image
-                src="/Frame-2147227068.png"
+                // src="/Gemini_Generated_Image_e3f2o0e3f2o0e3f2-removebg-preview.png"
+                src="/Group-11.png"
                 alt="Wish Tree Care"
                 width={200}
                 height={70}
@@ -430,6 +436,7 @@ const Navigation = () => {
                   objectFit: "contain",
                   maxWidth: "100%",
                   height: "auto",
+                  color: "#000000",
                 }}
               />
             </Box>
@@ -455,9 +462,7 @@ const Navigation = () => {
                     px: 2,
                     py: 0.6,
                     borderRadius: "50px",
-                    color: isActivePage(item.path, item.name)
-                      ? "#000000"
-                      : "#ffffff",
+                    color: "#000000",
                     bgcolor: isActivePage(item.path, item.name)
                       ? "#ffffff"
                       : "transparent",
@@ -467,10 +472,8 @@ const Navigation = () => {
                     "&:hover": {
                       bgcolor: isActivePage(item.path, item.name)
                         ? "#ffffff"
-                        : "rgba(255, 255, 255, 0.1)",
-                      color: isActivePage(item.path, item.name)
-                        ? "#000000"
-                        : "#ffffff",
+                        : "rgba(255, 255, 255, 0.35)",
+                      color: "#000000",
                     },
                     transition: "all 0.2s ease",
                   }}
